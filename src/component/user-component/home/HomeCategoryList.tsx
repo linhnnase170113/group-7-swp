@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Typography, Toolbar } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import ItemCard from "../ItemCard";
 
 export default function HomeCategoryList({ title }: any) {

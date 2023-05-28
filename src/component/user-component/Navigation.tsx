@@ -109,8 +109,9 @@ export default function UserNavigation() {
               />
             </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {navItem.map((item) => (
+              {navItem.map((item, key) => (
                 <Button
+                key={key}
                 >
                   {item.name}
                 </Button>
@@ -146,8 +147,8 @@ export default function UserNavigation() {
             }}
           >
             <Grid container spacing={0}>
-              {category.map((item) => (
-                <Grid item xs={3}>
+              {category.map((item, key) => (
+                <Grid item xs={3} key={key}>
                 <Button fullWidth>{item.name}</Button>
               </Grid>
               ))}
