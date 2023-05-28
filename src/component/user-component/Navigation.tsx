@@ -1,0 +1,161 @@
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import SearchIcon from "@mui/icons-material/Search";
+import { setup } from "../../config/setup";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { Button, Container, Grid, TextField } from "@mui/material";
+
+export default function UserNavigation() {
+  const navItem = [
+    { name: "plant", url: "" },
+    { name: "about", url: "" },
+    { name: "contact", url: "" },
+  ];
+  const category = [
+    { name: "đi chơi", url: ""},
+    { name: "đồ nhồi bông", url: ""},
+    { name: "trang sức", url: ""},
+    { name: "đồ trang trí", url: ""},
+  ]
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+
+  const handleProfileMenuOpen = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const menuId = "primary-search-account-menu";
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          padding: "1rem",
+          backgroundColor: setup.navigationColor,
+          color: setup.color,
+          "& .MuiButtonBase-root": {
+            boxShadow: "none",
+            margin: "0 1rem",
+            color: setup.color,
+          },
+          "& .MuiButtonBase-root:hover": {
+            backgroundColor: "inherit",
+          },
+        }}
+      >
+        <Container maxWidth="lg">
+          <Toolbar
+            sx={{
+              display: { xs: "none", md: "flex" },
+              justifyContent: "space-between",
+            }}
+          >
+            <Button>
+              <Typography
+                variant="h4"
+                noWrap
+                component="div"
+                sx={{ display: { xs: "none", sm: "block" } }}
+              >
+                {setup.name}
+              </Typography>
+            </Button>
+            <Box>
+              <TextField
+                sx={{
+                  "& .MuiInputBase-root": {
+                    border: "1px solid black",
+                    borderRadius: "1rem",
+                  },
+                }}
+                InputProps={{
+                  startAdornment: <SearchIcon />,
+                }}
+                size="small"
+              />
+            </Box>
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              {navItem.map((item) => (
+                <Button
+                >
+                  {item.name}
+                </Button>
+              ))}
+              <IconButton className="navbar" color="inherit">
+                <Badge badgeContent={4} color="error">
+                  <ShoppingBagIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                sx={{
+                  margin: "0 1rem",
+                }}
+                className="navbar"
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
+          </Toolbar>
+          <div
+            style={{
+              height: "2rem",
+              marginTop: "1rem",
+              paddingTop: "0.5rem",
+              borderTop: "0.1px solid black"
+            }}
+          >
+            <Grid container spacing={0}>
+              {category.map((item) => (
+                <Grid item xs={3}>
+                <Button fullWidth>{item.name}</Button>
+              </Grid>
+              ))}
+            </Grid>
+          </div>
+        </Container>
+      </AppBar>
+      {renderMenu}
+    </Box>
+  );
+}
