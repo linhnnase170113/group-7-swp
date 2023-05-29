@@ -6,8 +6,7 @@ export default function Banner() {
         <CardMedia
         component="img"
         alt="green iguana"
-        image="/assets/images/banner.jpg"
-        style={{
+        image="/assets/images/banner.jpg" style={{
           height: "30rem"
         }}
       />

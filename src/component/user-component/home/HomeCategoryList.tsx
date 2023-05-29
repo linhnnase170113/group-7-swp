@@ -42,25 +42,21 @@ export default function HomeCategoryList({ title }: any) {
           <Grid item xs={3}>
             <ProductCard
               product=""
-              onClick={() => router.push(`/user/search?categoryID=1`)}
             />
           </Grid>
           <Grid item xs={3}>
             <ProductCard
               product=""
-              onClick={() => router.push(`/user/search?categoryID=1`)}
             />
           </Grid>
           <Grid item xs={3}>
             <ProductCard
               product=""
-              onClick={() => router.push(`/user/search?categoryID=1`)}
             />
           </Grid>
           <Grid item xs={3}>
             <ProductCard
               product=""
-              onClick={() => router.push(`/user/search?categoryID=1`)}
             />
           </Grid>
         </Grid>
