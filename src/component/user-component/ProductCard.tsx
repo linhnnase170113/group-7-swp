@@ -5,11 +5,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
-export default function ProductCard({product} : any) {
+import { setup } from "@/config/setup";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { IconButton } from "@mui/material";
+import { useRouter } from "next/router";
+export default function ProductCard({ product }: any) {
+  const router = useRouter();
   return (
     <Card
-      onClick={() => {}}
+      onClick={() => {
+        router.push(`/user/details?productID=${1}`)
+      }}
       sx={{
         maxWidth: 345,
         cursor: "pointer",
@@ -18,27 +24,42 @@ export default function ProductCard({product} : any) {
       <CardMedia
         component="img"
         alt="green iguana"
-        image="/assets/images/banner.jpg"
+        image="/assets/images/1.jpg"
         sx={{
           height: "13rem",
         }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          LEGO hoa lan
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        <Typography variant="body1" color="text.secondary">
+          620000 VND
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: 1 > 0 ? setup.success : setup.error,
+          }}
+        >
+          {1 > 0 ? "Còn hàng" : "Hết hàng"}
         </Typography>
       </CardContent>
       <CardActions
         sx={{
-          float: "right",
+          width: "95%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          margin: "auto"
         }}
       >
-        <Button size="small">Mua ngay</Button>
-        <Button size="small">Thêm giỏ hàng</Button>
+        <Button onClick={() => {
+           router.push(`/user/details?productID=${1}`)
+        }}>Chi tiết</Button>
+        <IconButton size="large">
+          <AddShoppingCartIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );

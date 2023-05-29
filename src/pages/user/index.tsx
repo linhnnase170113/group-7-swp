@@ -4,7 +4,7 @@ import { category } from "@/config/setup";
 import UserLayout from "@/layout/UserLayout";
 import React, { useEffect } from "react";
 
-export default function Index() {
+export default function Home() {
 
   return (
     <>
