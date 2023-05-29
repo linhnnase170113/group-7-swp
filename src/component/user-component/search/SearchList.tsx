@@ -8,7 +8,7 @@ export default function SearchList({name} : any) {
   return (
         <>
         {name !== undefined ? (<Typography variant="h4">
-            Kết quả tìm kiếm cho "{name}"
+            {`Kết quả tìm kiếm cho "${name}"`}
         </Typography>) : (<></>)}
         <Typography variant="subtitle1" sx={{
             fontWeight: "600",
