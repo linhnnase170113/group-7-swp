@@ -12,19 +12,24 @@ import SearchIcon from "@mui/icons-material/Search";
 import { setup } from "../../config/setup";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Button, Container, Grid, TextField } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+import { randomInt } from "crypto";
 
 export default function UserNavigation() {
+  const router = useRouter()
+  const { handleSubmit, register} = useForm()
   const navItem = [
     { name: "plant", url: "" },
     { name: "about", url: "" },
     { name: "contact", url: "" },
   ];
   const category = [
-    { name: "đi chơi", url: ""},
-    { name: "đồ nhồi bông", url: ""},
-    { name: "trang sức", url: ""},
-    { name: "đồ trang trí", url: ""},
-  ]
+    { name: "đi chơi", url: "" },
+    { name: "đồ nhồi bông", url: "" },
+    { name: "trang sức", url: "" },
+    { name: "đồ trang trí", url: "" },
+  ];
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -37,6 +42,9 @@ export default function UserNavigation() {
     setAnchorEl(null);
   };
 
+  const onSubmit = (data:any) => {
+    router.push(`/user/search?name=${data.searchValue}`)
+  }
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -90,11 +98,16 @@ export default function UserNavigation() {
                 noWrap
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
+                onClick={() => {
+                  router.push("/user")
+                }}
               >
                 {setup.name}
               </Typography>
             </Button>
-            <Box>
+            <form onSubmit={
+              handleSubmit(onSubmit)
+            }>
               <TextField
                 sx={{
                   "& .MuiInputBase-root": {
@@ -106,15 +119,12 @@ export default function UserNavigation() {
                   startAdornment: <SearchIcon />,
                 }}
                 size="small"
+                {...register("searchValue", {required: true})}
               />
-            </Box>
+            </form>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               {navItem.map((item, key) => (
-                <Button
-                key={key}
-                >
-                  {item.name}
-                </Button>
+                <Button key={key}>{item.name}</Button>
               ))}
               <IconButton className="navbar" color="inherit">
                 <Badge badgeContent={4} color="error">
@@ -143,14 +153,16 @@ export default function UserNavigation() {
               height: "2rem",
               marginTop: "1rem",
               paddingTop: "0.5rem",
-              borderTop: "0.1px solid black"
+              borderTop: "0.1px solid black",
             }}
           >
             <Grid container spacing={0}>
               {category.map((item, key) => (
                 <Grid item xs={3} key={key}>
-                <Button fullWidth>{item.name}</Button>
-              </Grid>
+                  <Button fullWidth onClick={() => {
+                    router.push(`/user/search?categoryID=${key}`)
+                  }}>{item.name}</Button>
+                </Grid>
               ))}
             </Grid>
           </div>

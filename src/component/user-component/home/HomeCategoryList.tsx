@@ -1,31 +1,37 @@
 import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
-import ItemCard from "../ItemCard";
-
+import ProductCard from "../ProductCard";
+import { useRouter } from "next/router";
 export default function HomeCategoryList({ title }: any) {
+  const router = useRouter();
   return (
     <div
       style={{
         marginTop: "4rem",
       }}
     >
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "1rem"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "1rem",
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
             fontWeight: "600",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           {title.toUpperCase()}
         </Typography>
         <Typography
           sx={{
-            cursor: "pointer"
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            router.push(`/user/search?categoryID=${1}`);
           }}
         >
           xem thêm
@@ -34,16 +40,28 @@ export default function HomeCategoryList({ title }: any) {
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={3}>
-            <ItemCard />
+            <ProductCard
+              product=""
+              onClick={() => router.push(`/user/search?categoryID=1`)}
+            />
           </Grid>
           <Grid item xs={3}>
-            <ItemCard />
+            <ProductCard
+              product=""
+              onClick={() => router.push(`/user/search?categoryID=1`)}
+            />
           </Grid>
           <Grid item xs={3}>
-            <ItemCard />
+            <ProductCard
+              product=""
+              onClick={() => router.push(`/user/search?categoryID=1`)}
+            />
           </Grid>
           <Grid item xs={3}>
-            <ItemCard />
+            <ProductCard
+              product=""
+              onClick={() => router.push(`/user/search?categoryID=1`)}
+            />
           </Grid>
         </Grid>
       </Container>

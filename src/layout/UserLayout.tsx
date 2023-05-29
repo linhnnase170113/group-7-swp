@@ -12,8 +12,10 @@ export default function UserLayout({ children } : any) {
       </Head>
       <UserNavigation />
       <Container maxWidth="lg" sx={{
-        marginTop: "11rem"
+        marginTop: "11rem",
+          position: "relative"
       }}>{children}</Container>
+      
     </div>
   );
 }
