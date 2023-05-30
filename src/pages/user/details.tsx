@@ -40,9 +40,10 @@ export default function Details() {
           </div>
           <Typography variant="body1">Tình trạng: mới</Typography>
           <Typography variant="body1">Thông tin: </Typography>
-          {information.map((infor) => (
+          {information.map((infor, key) => (
           <Typography 
             variant="body1"
+            key={key}
           >{infor}</Typography>
           ))}
           <div style={{
