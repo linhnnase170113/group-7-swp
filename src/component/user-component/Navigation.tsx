@@ -90,19 +90,16 @@ export default function UserNavigation() {
               justifyContent: "space-between",
             }}
           >
-            <Button>
               <Typography
                 variant="h4"
-                noWrap
                 component="div"
-                sx={{ display: { xs: "none", sm: "block" } }}
+                sx={{ display: { xs: "none", sm: "block", cursor: "pointer" } }}
                 onClick={() => {
                   router.push("/user");
                 }}
               >
                 {setup.name}
               </Typography>
-            </Button>
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 sx={{

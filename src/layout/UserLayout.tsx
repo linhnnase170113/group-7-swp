@@ -13,9 +13,10 @@ export default function UserLayout({ children } : any) {
       <UserNavigation />
       <Container maxWidth="lg" sx={{
         marginTop: "11rem",
+        marginBottom: "5rem",
           position: "relative"
       }}>{children}</Container>
-      
+      <img src="/assets/images/footer.png"/>
     </div>
   );
 }
