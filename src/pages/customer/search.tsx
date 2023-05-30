@@ -2,8 +2,8 @@ import UserLayout from '@/layout/UserLayout'
 import React, { useEffect } from 'react'
 import { Typography, Grid } from "@mui/material"
 import { useRouter } from 'next/router'
-import Filter from '@/component/user-component/search/Filter';
-import SearchList from '@/component/user-component/search/SearchList';
+import Filter from '@/component/customer-component/search/Filter';
+import SearchList from '@/component/customer-component/search/SearchList';
 
 export default function Search() {
     const router = useRouter();

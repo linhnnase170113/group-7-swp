@@ -1,4 +1,4 @@
-import UserNavigation from "@/component/user-component/Navigation";
+import UserNavigation from "@/component/customer-component/Navigation";
 import { setup } from "@/config/setup";
 import { Container } from "@mui/material";
 import Head from "next/head";

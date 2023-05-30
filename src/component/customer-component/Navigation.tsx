@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 export default function UserNavigation() {
   const router = useRouter();
   const { handleSubmit, register } = useForm();
+  // const {}
   const navItem = [
     { name: "about", url: "" },
     { name: "contact", url: "" },
@@ -41,7 +42,7 @@ export default function UserNavigation() {
   };
 
   const onSubmit = (data: any) => {
-    router.push(`/user/search?name=${data.searchValue}`);
+    router.push(`/customer/search?name=${data.searchValue}`);
   };
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -95,7 +96,7 @@ export default function UserNavigation() {
                 component="div"
                 sx={{ display: { xs: "none", sm: "block", cursor: "pointer" } }}
                 onClick={() => {
-                  router.push("/user");
+                  router.push("/customer");
                 }}
               >
                 {setup.name}
@@ -124,6 +125,9 @@ export default function UserNavigation() {
                   <Button
                     onClick={() => {
                       router.push("/login");
+                    }}
+                    sx={{
+                      transform: "scale(1.5)"
                     }}
                   >
                     Login
@@ -168,7 +172,7 @@ export default function UserNavigation() {
                   <Button
                     fullWidth
                     onClick={() => {
-                      router.push(`/user/search?categoryID=${key}`);
+                      router.push(`/customer/search?categoryID=${key}`);
                     }}
                   >
                     {item.name}

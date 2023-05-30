@@ -52,7 +52,7 @@ export default function ProductCard({ product }: any) {
         }}
       >
         <Button onClick={() => {
-           router.push(`/user/details?productID=${1}`)
+           router.push(`/customer/details?productID=${1}`)
         }}>Chi tiết</Button>
         <IconButton size="large" onClick={() => {
       }}>

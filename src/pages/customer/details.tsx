@@ -1,7 +1,6 @@
 import { setup } from "@/config/setup";
 import UserLayout from "@/layout/UserLayout";
 import { Paper, CardMedia, Grid, Typography, Button } from "@mui/material";
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import React from "react";
 export default function Details() {
  const string = "LEGO bình hoa "

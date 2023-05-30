@@ -1,5 +1,5 @@
-import Banner from "@/component/user-component/home/Banner";
-import HomeCategoryList from "@/component/user-component/home/HomeCategoryList";
+import Banner from "@/component/customer-component/home/Banner";
+import HomeCategoryList from "@/component/customer-component/home/HomeCategoryList";
 import { category } from "@/config/setup";
 import UserLayout from "@/layout/UserLayout";
 import React from "react";

@@ -31,7 +31,7 @@ export default function HomeCategoryList({ title }: any) {
             cursor: "pointer",
           }}
           onClick={() => {
-            router.push(`/user/search?categoryID=${1}`);
+            router.push(`/customer/search?categoryID=${1}`);
           }}
         >
           xem thêm
