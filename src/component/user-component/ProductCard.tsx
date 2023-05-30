@@ -13,9 +13,6 @@ export default function ProductCard({ product }: any) {
   const router = useRouter();
   return (
     <Card
-      onClick={() => {
-        router.push(`/user/details?productID=${1}`)
-      }}
       sx={{
         maxWidth: 345,
         cursor: "pointer",
@@ -57,7 +54,8 @@ export default function ProductCard({ product }: any) {
         <Button onClick={() => {
            router.push(`/user/details?productID=${1}`)
         }}>Chi tiết</Button>
-        <IconButton size="large">
+        <IconButton size="large" onClick={() => {
+      }}>
           <AddShoppingCartIcon />
         </IconButton>
       </CardActions>

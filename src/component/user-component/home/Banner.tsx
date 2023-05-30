@@ -1,8 +1,7 @@
 import { CardMedia } from '@mui/material'
-import React, { useEffect } from 'react'
+import React from 'react'
 export default function Banner() {
   return (
-    <div>
         <CardMedia
         component="img"
         alt="green iguana"
@@ -10,6 +9,5 @@ export default function Banner() {
           height: "30rem"
         }}
       />
-    </div>
   )
 }

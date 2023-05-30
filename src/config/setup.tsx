@@ -1,5 +1,5 @@
 export const setup = {
-    name: "Greenstore",
+    name: "TiemHommie",
     navigationColor: "white",
     color: "black",
     banner: "/assets/images/banner.jpg",
@@ -7,7 +7,7 @@ export const setup = {
     success: "rgb(46, 125, 50)"
 }
 export const category = [
-    { name: "Đi chơi", url: ""},
+    { name: "Đồ chơi", url: ""},
     { name: "Đồ nhồi bông", url: ""},
     { name: "Trang sức", url: ""},
     { name: "Đồ trang trí", url: ""},

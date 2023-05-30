@@ -2,17 +2,16 @@ import Banner from "@/component/user-component/home/Banner";
 import HomeCategoryList from "@/component/user-component/home/HomeCategoryList";
 import { category } from "@/config/setup";
 import UserLayout from "@/layout/UserLayout";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Home() {
-
   return (
     <>
       <UserLayout>
-      <Banner />
-      {category.map((item, key) => (
-        <HomeCategoryList title={item.name} key={key}/>
-      ))}
+        <Banner />
+        {category.map((item, key) => (
+          <HomeCategoryList title={item.name} key={key} />
+        ))}
       </UserLayout>
     </>
   );
