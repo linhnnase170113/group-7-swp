@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import ProductCard from "../ProductCard";
 import { useRouter } from "next/router";
-export default function HomeCategoryList({ title }: any) {
+export default function HomeCategoryList({ category }: any) {
   const router = useRouter();
   return (
     <div
@@ -24,14 +24,14 @@ export default function HomeCategoryList({ title }: any) {
             cursor: "pointer",
           }}
         >
-          {title.toUpperCase()}
+          {category.categoryName.toUpperCase()}
         </Typography>
         <Typography
           sx={{
             cursor: "pointer",
           }}
           onClick={() => {
-            router.push(`/customer/search?categoryID=${1}`);
+            router.push(`/customer/search?categoryId=${category.categoryId}`);
           }}
         >
           xem thêm

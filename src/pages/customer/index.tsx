@@ -18,7 +18,7 @@ export default function Home() {
       <UserLayout>
         <Banner />
         { categoryList != null ? categoryList.map((item:any) => (
-          <HomeCategoryList title={item.categoryName} key={item.categoryId} />
+          <HomeCategoryList category={item} />
         )) : null}
       </UserLayout>
     </>

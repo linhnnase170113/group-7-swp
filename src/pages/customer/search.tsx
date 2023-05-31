@@ -7,7 +7,7 @@ import SearchList from '@/component/customer-component/search/SearchList';
 
 export default function Search() {
     const router = useRouter();
-    const { name, categoryID } = router.query
+    const { name, categoryId } = router.query
   return (
     <UserLayout>
         <Grid container spacing={2}>
