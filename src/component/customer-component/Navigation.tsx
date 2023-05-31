@@ -165,7 +165,7 @@ export default function UserNavigation({categoryList} : any) {
                   <Button
                     fullWidth
                     onClick={() => {
-                      router.push(`/customer/search?categoryID=${item.categoryId}`);
+                      router.push(`/customer/search?categoryId=${item.categoryId}`);
                     }}
                   >
                     {item.categoryName}
