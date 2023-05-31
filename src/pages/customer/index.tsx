@@ -1,7 +1,7 @@
 import { getCategoryListApi } from "@/api/CategoryApi";
 import Banner from "@/component/customer-component/home/Banner";
 import HomeCategoryList from "@/component/customer-component/home/HomeCategoryList";
-import UserLayout from "@/layout/UserLayout";
+import UserLayout from "@/layout/CustomerLayout";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     const getCategoryList =async () => {
       setCategoryList(await getCategoryListApi())
-      console.log(await getCategoryListApi())
+      
     }
     getCategoryList()
   }, [])

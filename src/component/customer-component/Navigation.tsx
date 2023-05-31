@@ -15,19 +15,12 @@ import { Button, Container, Grid, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
-export default function UserNavigation() {
+export default function UserNavigation({categoryList} : any) {
   const router = useRouter();
   const { handleSubmit, register } = useForm();
-  // const {}
   const navItem = [
     { name: "about", url: "" },
     { name: "contact", url: "" },
-  ];
-  const category = [
-    { name: "đồ chơi", url: "" },
-    { name: "đồ nhồi bông", url: "" },
-    { name: "trang sức", url: "" },
-    { name: "đồ trang trí", url: "" },
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -167,18 +160,18 @@ export default function UserNavigation() {
             }}
           >
             <Grid container spacing={0}>
-              {category.map((item, key) => (
-                <Grid item xs={3} key={key}>
+              {categoryList != null ? categoryList.map((item: any) => (
+                <Grid item xs={3} key={item.categoryId}>
                   <Button
                     fullWidth
                     onClick={() => {
-                      router.push(`/customer/search?categoryID=${key}`);
+                      router.push(`/customer/search?categoryID=${item.categoryId}`);
                     }}
                   >
-                    {item.name}
+                    {item.categoryName}
                   </Button>
                 </Grid>
-              ))}
+              )) : null}
             </Grid>
           </div>
         </Container>

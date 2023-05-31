@@ -4,5 +4,5 @@ export const getCategoryListApi = async () => {
         const categoryList : any =  await response.json()
     return categoryList;
     } 
-    return null
+    return null;
 }

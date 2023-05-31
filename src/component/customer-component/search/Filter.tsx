@@ -9,9 +9,6 @@ export default function Filter() {
   const [categoryNumber, setCategoryNumber] = useState(-1);
   const [priceNumber, setPriceNumber] = useState(-1);
   const [statusNumber, setStatusNumber] = useState(-1)
-  useEffect(() => {
-    console.log(categoryNumber)
-  }, [categoryNumber, priceNumber, statusNumber])
   return (
     <Paper>
       <Typography

@@ -1,5 +1,5 @@
 import { setup } from "@/config/setup";
-import UserLayout from "@/layout/UserLayout";
+import UserLayout from "@/layout/CustomerLayout";
 import { Paper, CardMedia, Grid, Typography, Button } from "@mui/material";
 import React from "react";
 export default function Details() {

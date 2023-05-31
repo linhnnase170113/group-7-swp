@@ -1,4 +1,4 @@
-import UserLayout from '@/layout/UserLayout'
+import UserLayout from '@/layout/CustomerLayout'
 import React, { useEffect } from 'react'
 import { Typography, Grid } from "@mui/material"
 import { useRouter } from 'next/router'
