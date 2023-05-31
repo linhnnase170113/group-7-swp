@@ -17,6 +17,9 @@ export default function ProductCard({ product }: any) {
         maxWidth: 345,
         cursor: "pointer",
       }}
+      onClick={() => {
+        router.push(`/customer/details?productID=${1}`);
+      }}
     >
       <CardMedia
         component="img"
@@ -48,14 +51,11 @@ export default function ProductCard({ product }: any) {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          margin: "auto"
+          margin: "auto",
         }}
       >
-        <Button onClick={() => {
-           router.push(`/customer/details?productID=${1}`)
-        }}>Chi tiết</Button>
-        <IconButton size="large" onClick={() => {
-      }}>
+        <Button>Chi tiết</Button>
+        <IconButton size="large">
           <AddShoppingCartIcon />
         </IconButton>
       </CardActions>
