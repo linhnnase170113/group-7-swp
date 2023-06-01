@@ -14,7 +14,7 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-
+import WidgetsIcon from '@mui/icons-material/Widgets';
 export default function UserNavigation({ categoryList }: any) {
   const router = useRouter();
   const { handleSubmit, register } = useForm();
@@ -84,21 +84,36 @@ export default function UserNavigation({ categoryList }: any) {
               justifyContent: "space-between",
             }}
           >
-            <Typography
-              variant="h4"
-              component="div"
-              sx={{
-                display: {
-                  xs: "none", sm: "block", cursor: "pointer",
-                  letterSpacing: '.1rem',
-                }
-              }}
-              onClick={() => {
-                router.push("/customer");
-              }}
-            >
-              {setup.name}
-            </Typography>
+            <div>
+              <Typography
+                variant="h4"
+                component="div"
+                sx={{
+                  display: {
+                    xs: "none", sm: "block", cursor: "pointer",
+                    letterSpacing: '.1rem',
+                  }
+                }}
+                onClick={() => {
+                  router.push("/customer");
+                }}
+              >
+                {setup.name}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                component="div"
+                sx={{
+                  display: {
+                    xs: "none", sm: "block", cursor: "pointer",
+                    letterSpacing: '.1rem',
+                    textAlign: "center"
+                  }
+                }}
+              >
+                Decoration and Gift
+              </Typography>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 sx={{
@@ -162,14 +177,20 @@ export default function UserNavigation({ categoryList }: any) {
               height: "2rem",
               marginTop: "1rem",
               paddingTop: "0.5rem",
-              borderTop: "0.1px solid black",
+              borderTop: "1px solid gray",
             }}
           >
             <Grid container spacing={0}>
+              <Grid item xs={2}>
+                <Button>
+                  <WidgetsIcon sx={{
+                    marginRight: "5px"
+                  }} />Danh mục
+                </Button>
+              </Grid>
               {categoryList != null ? categoryList.map((item: any) => (
-                <Grid item xs={3} key={item.categoryId}>
+                <Grid item xs={2} key={item.categoryId}>
                   <Button
-                    fullWidth
                     onClick={() => {
                       router.push(`/customer/search?categoryId=${item.categoryId}`);
                     }}
