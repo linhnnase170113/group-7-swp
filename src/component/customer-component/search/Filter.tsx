@@ -11,22 +11,13 @@ export default function Filter() {
   const [statusNumber, setStatusNumber] = useState(-1)
   return (
     <Paper>
-      <Typography
-      onClick={() => {
-        setCategoryNumber(-1)
-        setPriceNumber(-1)
-        setStatusNumber(-1)
-      }} style={{
-        cursor: "pointer",
-          padding: "0.5rem 1rem 0rem",
-        }}>xóa tìm kiếm</Typography>
       <div
         style={{
           padding: "1rem",
         }}
       >
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
             fontWeight: "500",
           }}
@@ -40,10 +31,11 @@ export default function Filter() {
             key={key}
             sx={{
               width: "100%",
+              paddingLeft: "1rem"
             }}
             value={categoryNumber === key ? true : false}
             onChange={(_, value) => {
-              setCategoryNumber(key)
+              value === true ? setCategoryNumber(key) : setCategoryNumber(-1)
             }}
           />
         ))}
@@ -54,7 +46,7 @@ export default function Filter() {
         }}
       >
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
             fontWeight: "500",
           }}
@@ -68,10 +60,11 @@ export default function Filter() {
             key={key}
             sx={{
               width: "100%",
+              paddingLeft: "1rem"
             }}
             value={priceNumber === key ? true : false}
             onChange={(_, value) => {
-              setPriceNumber(key)
+              value === true ? setPriceNumber(key) : setPriceNumber(-1)
             }}
           />
         ))}
@@ -88,10 +81,11 @@ export default function Filter() {
           key={key}
           sx={{
             width: "100%",
+            paddingLeft: "1rem"
           }}
           value={statusNumber === key ? true : false}
             onChange={(_, value) => {
-              setStatusNumber(key)
+              value === true ? setStatusNumber(key) : setStatusNumber(-1)
             }}
         />
         ))}
