@@ -1,4 +1,6 @@
 import { setup } from "@/config/setup";
+import { setOpen } from "@/feature/Alert";
+import { useAppDispatch } from "@/feature/Hooks";
 import UserLayout from "@/layout/CustomerLayout";
 import { Paper, CardMedia, Grid, Typography, Button } from "@mui/material";
 import { useRouter } from "next/router";
@@ -6,6 +8,7 @@ import React, { useEffect, useState } from "react";
 export default function Details() {
   const router = useRouter()
   const { productId } = router.query
+  const dispatch = useAppDispatch()
   const [product, setProduct] = useState<any>(null)
   const string = "Lego Hoa"
   const infor = "Hàng có sẵn tại Shop Lego 40460 Rose - Hoa hồng Sản phẩm đi kèm hướng dẫn lắp ráp - Thương hiệu đồ chơi tới từ Đan Mạch ( mới nguyên hộp - new sealed )"
@@ -60,7 +63,15 @@ export default function Details() {
               width: "4rem",
               height: "2rem",
             }}/>
-            <Button variant="contained" style={{
+            <Button variant="contained" onClick={() => {
+              dispatch(
+                setOpen({
+                  open: true,
+                  message: "Adding success",
+                  severity: "success",
+                })
+              );
+            }} style={{
               fontSize: "0.9rem",
               backgroundColor: 5> 0? setup.success : setup.error,
               color: "white"
