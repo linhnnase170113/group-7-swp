@@ -1,21 +1,24 @@
 import {
   Button,
   Checkbox,
-  DialogContent,
-  DialogTitle,
   InputAdornment,
   OutlinedInput,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
 import GoogleIcon from "@mui/icons-material/Google";
 import { setup } from "@/config/setup";
 import { useRouter } from "next/router";
+import { UserContext } from "./AuthContext";
 
 export default function LoginCard({ setSign }: any) {
   const router = useRouter();
+  const { loginGoogle, login, logout, user, register } = useContext(UserContext)
+  useEffect(() => {
+    console.log(user)
+  })
   return (
     <>
       <OutlinedInput
@@ -54,14 +57,17 @@ export default function LoginCard({ setSign }: any) {
       <Button
         variant="contained"
         style={{ backgroundColor: "#F5A524" }}
-        onClick={() => {}}
         fullWidth
+        onClick={() => {
+          loginGoogle()
+        }}
       >
         <GoogleIcon style={{ fontSize: "1.5rem", marginRight: "1rem" }} />
         Login with google
       </Button>
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
           <Button
+          className="login-button"
             onClick={() => {
               router.push("/");
             }}
@@ -70,6 +76,7 @@ export default function LoginCard({ setSign }: any) {
           </Button>
           <div>
             <Button
+            className="login-button"
               onClick={() => {
                 setSign(true);
               }}
@@ -77,6 +84,7 @@ export default function LoginCard({ setSign }: any) {
               Register
             </Button>
             <Button
+            className="login-button"
               variant="contained"
               sx={{
                 color: setup.navigationColor,

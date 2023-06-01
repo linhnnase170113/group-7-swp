@@ -4,7 +4,8 @@ export const setup = {
     color: "white",
     banner: "/assets/images/banner.jpg",
     error: "rgb(211, 47, 47)",
-    success: "rgb(46, 125, 50)"
+    success: "rgb(46, 125, 50)",
+    email: "cskg.tiemhommie@gmail.com"
 }
 export const category = [
     { name: "Đồ chơi", url: ""},
@@ -17,3 +18,9 @@ export const productStatus = [
     { name: "Bán chạy"},
     { name: "Hàng mới"}
 ]
+export const block = (inputString: any) =>{
+    var pattern = /[^a-zA-Z0-9]/g; // Mẫu để tìm các kí tự đặc biệt
+    var sanitizedString = inputString.replace(pattern, ''); // Loại bỏ các kí tự đặc biệt
+  
+    return sanitizedString;
+  }

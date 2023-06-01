@@ -12,8 +12,7 @@ import { setup } from '@/config/setup'
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import InfoIcon from '@mui/icons-material/Info';
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function AdminNavigationTop() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,7 +42,7 @@ function AdminNavigationTop() {
         "& .MuiButtonBase-root": {
           boxShadow: "none",
           margin: "0 1rem",
-          color: setup.color,
+          color: "black"
         },
         "& .MuiButtonBase-root:hover": {
           backgroundColor: "inherit",

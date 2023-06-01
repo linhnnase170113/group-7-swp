@@ -5,21 +5,22 @@ import UserLayout from "@/layout/CustomerLayout";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const [categoryAndProduct,setCategoryAndProduct] = useState<any>(null)
+  const [categoryAndProduct, setCategoryAndProduct] = useState<any>(null)
   useEffect(() => {
-    const getCategoryList =async () => {
+    const getCategoryList = async () => {
       setCategoryAndProduct(await getCategoryAndProductApi())
     }
     getCategoryList()
   }, [])
   return (
     <>
-      <UserLayout>
-        <Banner />
-        { categoryAndProduct != null ? categoryAndProduct.map((item:any) => (
-          <HomeCategoryList categoryAndProduct={item} key={item.categoryId} />
-        )) : null}
-      </UserLayout>
+      <Banner>
+        <UserLayout>
+          {categoryAndProduct != null ? categoryAndProduct.map((item: any) => (
+            <HomeCategoryList categoryAndProduct={item} key={item.categoryId} />
+          )) : null}
+        </UserLayout>
+      </Banner>
     </>
   );
 }

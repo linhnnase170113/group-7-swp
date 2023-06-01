@@ -25,7 +25,8 @@ export default function NavigationLeft() {
             xs: "none", sm: "flex", cursor: "pointer",
             letterSpacing: '.1rem', padding: "1rem",
             borderBottom: "1px solid gray",
-            alignItems: "center"
+            alignItems: "center",
+            marginBottom: "2rem"
           },
         }}
         color="white"
@@ -38,9 +39,9 @@ export default function NavigationLeft() {
       {navBarLeftItems.map((navBarLeftItem, key) => (
         <Typography key={key} sx={{
           cursor: "pointer",
-          width: "100%",
+          width: "90%",
           color: "white",
-          padding: "1rem",
+          padding: "1.2rem",
         }}
           onClick={() => {
             router.push(navBarLeftItem.url)

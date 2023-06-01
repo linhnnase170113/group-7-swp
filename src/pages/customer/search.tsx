@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Filter from '@/component/customer-component/search/Filter';
 import SearchList from '@/component/customer-component/search/SearchList';
 import { getProductListByCategoryApi, getProductListByNameApi } from '@/api/ProductApi';
+import { block } from '@/config/setup';
 
 export default function Search() {
     const router = useRouter();
@@ -12,7 +13,7 @@ export default function Search() {
     const [productList, setProductList] = useState<any>([])
     useEffect(() => {
       const getProductListByName = async () => {
-        setProductList(await getProductListByNameApi(productName))
+        setProductList(await getProductListByNameApi(block(productName)))
       }
       const getProductListByCategory =async () => {
         setProductList(await getProductListByCategoryApi(categoryId))

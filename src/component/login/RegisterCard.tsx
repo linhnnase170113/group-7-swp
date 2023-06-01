@@ -45,6 +45,7 @@ export default function RegisterCard({ setSign }: any) {
         style={{ backgroundColor: "#F5A524" }}
         onClick={() => {}}
         fullWidth
+        className="login-button"
       >
         <GoogleIcon style={{ fontSize: "1.5rem", marginRight: "1rem" }} />
         Login with google
@@ -57,6 +58,7 @@ export default function RegisterCard({ setSign }: any) {
         }}
       >
         <Button
+          className="login-button"
           onClick={() => {
             router.push("/");
           }}
@@ -65,6 +67,7 @@ export default function RegisterCard({ setSign }: any) {
         </Button>
         <div>
           <Button
+          className="login-button"
             onClick={() => {
               setSign(false);
             }}
@@ -73,9 +76,7 @@ export default function RegisterCard({ setSign }: any) {
           </Button>
           <Button
             variant="contained"
-            sx={{
-              color: setup.navigationColor,
-            }}
+            className="login-button"
           >
             Register
           </Button>

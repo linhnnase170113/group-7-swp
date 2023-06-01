@@ -4,7 +4,7 @@ export const getCategoryListApi = async () => {
         const categoryList: any = await response.json()
         return categoryList;
     }
-    return null;
+    return [];
 }
 export const getCategoryAndProductApi = async () => {
     const response = await fetch("http://localhost:8080/api/category/getCategoryAndProduct")
@@ -12,5 +12,5 @@ export const getCategoryAndProductApi = async () => {
         const categoryAndProduct: any = await response.json()
         return categoryAndProduct
     }
-    return null
+    return [];
 }

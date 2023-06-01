@@ -71,9 +71,9 @@ export default function UserNavigation({ categoryList }: any) {
             margin: "0 1rem",
             color: setup.color,
             fontWeight: "700",
-            fontSize: "large",
+            fontSize: "medium",
           },
-          "& .MuiButtonBase-root:hover": {
+          "& .MuiButtonBase-root:hover": {  
             backgroundColor: "inherit",
             border: "none"
           },
@@ -149,7 +149,7 @@ export default function UserNavigation({ categoryList }: any) {
                     router.push("/login");
                   }}
                   sx={{
-                    transform: "scale(1.5)"
+                    transform: "scale(1.2)"
                   }}
                 >
                   Login

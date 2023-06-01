@@ -16,7 +16,7 @@ export default function AdminLayout({ children }: any) {
         <Grid item xs={9.5}> 
           <AdminNavigationTop />
           <Container maxWidth="lg" sx={{
-            marginTop: "2rem"
+            marginTop: "1rem"
           }}>{children}</Container>
         </Grid>
       </Grid>

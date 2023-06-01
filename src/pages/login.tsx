@@ -5,12 +5,13 @@ import {
   Dialog,
   DialogContent,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoginCard from "@/component/login/LoginCard";
 import RegisterCard from "@/component/login/RegisterCard";
 import Head from "next/head";
 export default function Login() {
   const [sign, setSign] = useState(false);
+
   return (
     <div>
       <Head>
