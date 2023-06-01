@@ -191,6 +191,7 @@ export default function UserNavigation({ categoryList }: any) {
               {categoryList != null ? categoryList.map((item: any) => (
                 <Grid item xs={2} key={item.categoryId}>
                   <Button
+                  fullWidth
                     onClick={() => {
                       router.push(`/customer/search?categoryId=${item.categoryId}`);
                     }}
