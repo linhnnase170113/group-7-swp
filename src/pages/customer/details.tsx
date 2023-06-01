@@ -1,3 +1,4 @@
+import { getProductByProductIdApi } from "@/api/ProductApi";
 import { setup } from "@/config/setup";
 import { setOpen } from "@/feature/Alert";
 import { useAppDispatch } from "@/feature/Hooks";
@@ -7,19 +8,19 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 export default function Details() {
   const router = useRouter()
-  const { productId } = router.query
+  const { productId } = router.query as any
   const dispatch = useAppDispatch()
   const [product, setProduct] = useState<any>(null)
-  const string = "Lego Hoa"
-  const infor = "Hàng có sẵn tại Shop Lego 40460 Rose - Hoa hồng Sản phẩm đi kèm hướng dẫn lắp ráp - Thương hiệu đồ chơi tới từ Đan Mạch ( mới nguyên hộp - new sealed )"
-  useEffect(() => {
+    useEffect(() => {
     const getProduct = async () => {
-      
+      const product = await getProductByProductIdApi(productId)
+      setProduct(product)
     }
+    getProduct()
   }, [product])
   return (
     <UserLayout>
-      <Paper sx={{
+      {product !== null ? (<Paper sx={{
         padding: {
           lg: "3rem",
           sm: "0rem"
@@ -34,26 +35,26 @@ export default function Details() {
         <CardMedia
         component="img"
         alt="green iguana"
-        image="/assets/images/1.jpg" />
+        image={"/assets/images/" + product.image} />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={6}>
           <Typography variant="h4" sx={{
             // fontWeight: "500"
-          }}>{string}</Typography>
+          }}>{product.productName}</Typography>
           <div style={{
             margin: "1rem 0rem"
           }}>
-          <Typography variant="h6">Giá sản phẩm: 62000 VND </Typography>
+          <Typography variant="h6">Giá sản phẩm: {product.price} VND </Typography>
           <Typography variant="h6" sx={{
-            color: 5> 0? setup.success : setup.error,
-          }}>Số lượng: 5</Typography>
+            color: product.quantity> 0? setup.success : setup.error,
+          }}>Số lượng: {product.quantity}</Typography>
           </div>
-          <Typography variant="body1">Tình trạng: mới</Typography>
+          <Typography variant="body1">Tình trạng: {product.status}</Typography>
           <Typography variant="body1">Thông tin: </Typography>
           <Typography 
             variant="body1"
-          >{infor}</Typography>
+          >{product.description}</Typography>
           <div style={{
             marginTop: "2rem",
             display: "flex",
@@ -63,7 +64,9 @@ export default function Details() {
               width: "4rem",
               height: "2rem",
             }}/>
-            <Button variant="contained" onClick={() => {
+            <Button variant="contained" 
+              disabled= {product.quantity > 0 ? false : true}
+              onClick={() => {
               dispatch(
                 setOpen({
                   open: true,
@@ -73,13 +76,13 @@ export default function Details() {
               );
             }} style={{
               fontSize: "0.9rem",
-              backgroundColor: 5> 0? setup.success : setup.error,
+              backgroundColor: product.quantity> 0? setup.success : setup.error,
               color: "white"
-            }}>Add to Cart</Button>
+            }}>{product.quantity > 0 ? "Add to Cart " : "Out of Stock"}</Button>
           </div>
         </Grid>
         </Grid>
-      </Paper>
+      </Paper>) : (<></>)}
     </UserLayout>
   );
 }

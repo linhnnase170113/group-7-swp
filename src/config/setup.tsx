@@ -19,8 +19,7 @@ export const productStatus = [
     { name: "Hàng mới"}
 ]
 export const block = (inputString: any) =>{
-    var pattern = /[^a-zA-Z0-9]/g; // Mẫu để tìm các kí tự đặc biệt
-    var sanitizedString = inputString.replace(pattern, ''); // Loại bỏ các kí tự đặc biệt
-  
-    return sanitizedString;
+    let pattern = /[^a-zA-Z0-9]/g; // Mẫu để tìm các kí tự đặc biệt
+    let sanitizedString = inputString.replace(pattern, ''); // Loại bỏ các kí tự đặc biệt
+    return sanitizedString === inputString ? inputString : "";
   }

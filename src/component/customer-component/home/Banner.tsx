@@ -8,7 +8,7 @@ export default function Banner({ children }: any) {
         alt="green iguana"
         image="/assets/images/banner.jpg" style={{
           height: "28rem",
-          marginTop: "13rem",
+          marginTop: "10.2rem",
         }}
       />
       {children}
