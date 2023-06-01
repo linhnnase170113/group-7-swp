@@ -15,7 +15,7 @@ import { Button, Container, Grid, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
-export default function UserNavigation({categoryList} : any) {
+export default function UserNavigation({ categoryList }: any) {
   const router = useRouter();
   const { handleSubmit, register } = useForm();
   const navItem = [
@@ -35,7 +35,7 @@ export default function UserNavigation({categoryList} : any) {
   };
 
   const onSubmit = (data: any) => {
-    router.push(`/customer/search?name=${data.searchValue}`);
+    router.push(`/customer/search?productName=${data.searchValue}`);
   };
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -84,16 +84,21 @@ export default function UserNavigation({categoryList} : any) {
               justifyContent: "space-between",
             }}
           >
-              <Typography
-                variant="h4"
-                component="div"
-                sx={{ display: { xs: "none", sm: "block", cursor: "pointer" } }}
-                onClick={() => {
-                  router.push("/customer");
-                }}
-              >
-                {setup.name}
-              </Typography>
+            <Typography
+              variant="h4"
+              component="div"
+              sx={{
+                display: {
+                  xs: "none", sm: "block", cursor: "pointer",
+                  letterSpacing: '.1rem',
+                }
+              }}
+              onClick={() => {
+                router.push("/customer");
+              }}
+            >
+              {setup.name}
+            </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 sx={{
@@ -107,6 +112,7 @@ export default function UserNavigation({categoryList} : any) {
                   startAdornment: <SearchIcon />,
                 }}
                 size="small"
+                defaultValue=""
                 {...register("searchValue", { required: true })}
               />
             </form>
@@ -115,16 +121,16 @@ export default function UserNavigation({categoryList} : any) {
                 <Button key={key}>{item.name}</Button>
               ))}
               {true ? (
-                  <Button
-                    onClick={() => {
-                      router.push("/login");
-                    }}
-                    sx={{
-                      transform: "scale(1.5)"
-                    }}
-                  >
-                    Login
-                  </Button>
+                <Button
+                  onClick={() => {
+                    router.push("/login");
+                  }}
+                  sx={{
+                    transform: "scale(1.5)"
+                  }}
+                >
+                  Login
+                </Button>
               ) : (
                 <>
                   <IconButton className="navbar" color="inherit">
@@ -132,21 +138,21 @@ export default function UserNavigation({categoryList} : any) {
                       <ShoppingBagIcon />
                     </Badge>
                   </IconButton>
-                <IconButton
-                  sx={{
-                    margin: "0 1rem",
-                  }}
-                  className="navbar"
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
+                  <IconButton
+                    sx={{
+                      margin: "0 1rem",
+                    }}
+                    className="navbar"
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
                 </>
               )}
             </Box>

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import ProductCard from "../ProductCard";
 import { useRouter } from "next/router";
-export default function HomeCategoryList({ category }: any) {
+export default function HomeCategoryList({ categoryAndProduct }: any) {
   const router = useRouter();
   return (
     <div
@@ -24,14 +24,14 @@ export default function HomeCategoryList({ category }: any) {
             cursor: "pointer",
           }}
         >
-          {category.categoryName.toUpperCase()}
+          {categoryAndProduct.categoryName.toUpperCase()}
         </Typography>
         <Typography
           sx={{
             cursor: "pointer",
           }}
           onClick={() => {
-            router.push(`/customer/search?categoryId=${category.categoryId}`);
+            router.push(`/customer/search?categoryId=${categoryAndProduct.categoryId}`);
           }}
         >
           xem thêm
@@ -41,22 +41,22 @@ export default function HomeCategoryList({ category }: any) {
         <Grid container spacing={2}>
           <Grid item xs={3}>
             <ProductCard
-              product=""
+              product={categoryAndProduct.productList[0]}
             />
           </Grid>
           <Grid item xs={3}>
             <ProductCard
-              product=""
+              product={categoryAndProduct.productList[1]}
             />
           </Grid>
           <Grid item xs={3}>
             <ProductCard
-              product=""
+              product={categoryAndProduct.productList[2]}
             />
           </Grid>
           <Grid item xs={3}>
             <ProductCard
-              product=""
+              product={categoryAndProduct.productList[3]}
             />
           </Grid>
         </Grid>

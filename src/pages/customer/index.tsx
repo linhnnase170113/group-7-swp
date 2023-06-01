@@ -1,15 +1,14 @@
-import { getCategoryListApi } from "@/api/CategoryApi";
+import { getCategoryAndProductApi } from "@/api/CategoryApi";
 import Banner from "@/component/customer-component/home/Banner";
 import HomeCategoryList from "@/component/customer-component/home/HomeCategoryList";
 import UserLayout from "@/layout/CustomerLayout";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const [categoryList,setCategoryList] = useState<any>(null)
+  const [categoryAndProduct,setCategoryAndProduct] = useState<any>(null)
   useEffect(() => {
     const getCategoryList =async () => {
-      setCategoryList(await getCategoryListApi())
-      
+      setCategoryAndProduct(await getCategoryAndProductApi())
     }
     getCategoryList()
   }, [])
@@ -17,8 +16,8 @@ export default function Home() {
     <>
       <UserLayout>
         <Banner />
-        { categoryList != null ? categoryList.map((item:any) => (
-          <HomeCategoryList category={item} key={item.categoryId} />
+        { categoryAndProduct != null ? categoryAndProduct.map((item:any) => (
+          <HomeCategoryList categoryAndProduct={item} key={item.categoryId} />
         )) : null}
       </UserLayout>
     </>

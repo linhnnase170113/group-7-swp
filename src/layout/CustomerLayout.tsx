@@ -10,7 +10,6 @@ export default function UserLayout({ children } : any) {
   useEffect(() => {
     const getCategoryList =async () => {
       setCategoryList(await getCategoryListApi());
-      console.log(await getCategoryListApi())
     }
     getCategoryList()
   }, [])

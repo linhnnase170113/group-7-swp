@@ -1,10 +1,19 @@
 import { setup } from "@/config/setup";
 import UserLayout from "@/layout/CustomerLayout";
 import { Paper, CardMedia, Grid, Typography, Button } from "@mui/material";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 export default function Details() {
- const string = "LEGO bình hoa "
-  const information = ["Xu?t x?: Vi?t Nam","Ch?t li?u: g?, kim lo?i","Nhân v?t b?ng g?: 4 x 4 x 6 cm", "Chuông: 3 x 3 x 3 cm;", "T?ng chi?u dài: 15 cm"]
+  const router = useRouter()
+  const { productId } = router.query
+  const [product, setProduct] = useState<any>(null)
+  const string = "Lego Hoa"
+  const infor = "Hàng có sẵn tại Shop Lego 40460 Rose - Hoa hồng Sản phẩm đi kèm hướng dẫn lắp ráp - Thương hiệu đồ chơi tới từ Đan Mạch ( mới nguyên hộp - new sealed )"
+  useEffect(() => {
+    const getProduct = async () => {
+      
+    }
+  }, [product])
   return (
     <UserLayout>
       <Paper sx={{
@@ -28,7 +37,7 @@ export default function Details() {
         <Grid item xs={6}>
           <Typography variant="h4" sx={{
             // fontWeight: "500"
-          }}>{string.toUpperCase()}</Typography>
+          }}>{string}</Typography>
           <div style={{
             margin: "1rem 0rem"
           }}>
@@ -39,12 +48,9 @@ export default function Details() {
           </div>
           <Typography variant="body1">Tình trạng: mới</Typography>
           <Typography variant="body1">Thông tin: </Typography>
-          {information.map((infor, key) => (
           <Typography 
             variant="body1"
-            key={key}
           >{infor}</Typography>
-          ))}
           <div style={{
             marginTop: "2rem",
             display: "flex",

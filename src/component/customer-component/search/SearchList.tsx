@@ -3,21 +3,20 @@ import {Typography, Grid} from '@mui/material';
 import ProductList from '../ProductList';
 
 
-export default function SearchList({name} : any) {
-    const test = ["0", "1", "2", "3", "4", "5", "6", "7"] 
+export default function SearchList({productList, productName} : any) {
   return (
         <>
-        {name !== undefined ? (<Typography variant="h4">
-            {`Kết quả tìm kiếm cho "${name}"`}
+        {productName !== undefined ? (<Typography variant="h4">
+            {`Kết quả tìm kiếm cho "${productName}"`}
         </Typography>) : (<></>)}
         <Typography variant="subtitle1" sx={{
             fontWeight: "600",
             color:"gray",
             marginBottom: "2rem"
         }}>
-           {test.length} sản phẩm tìm thấy
+           {productList.length} sản phẩm tìm thấy
         </Typography>
-        <ProductList productList={test}/>
+        <ProductList productList={productList}/>
         </>
   )
 }

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { setup } from "@/config/setup";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip, Zoom } from "@mui/material";
 import { useRouter } from "next/router";
 export default function ProductCard({ product }: any) {
   const router = useRouter();
@@ -18,31 +18,40 @@ export default function ProductCard({ product }: any) {
         cursor: "pointer",
       }}
       onClick={() => {
-        router.push(`/customer/details?productID=${1}`);
+        router.push(`/customer/details?productId=${product.productId}`);
       }}
     >
       <CardMedia
         component="img"
         alt="green iguana"
-        image="/assets/images/1.jpg"
+        image={`/assets/images/${product.image}`}
         sx={{
           height: "13rem",
         }}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          LEGO hoa lan
+      <CardContent sx={{
+        paddingBottom: "0rem"
+      }}>
+      <Tooltip TransitionComponent={Zoom} title={product.productName}>
+        <Typography gutterBottom component="div" sx={{
+          overflow: "hidden",
+          height: "3.1rem",
+          fontWeight: "600",
+          fontSize: "1.1rem"
+        }}>
+          {product.productName}
         </Typography>
+        </Tooltip>
         <Typography variant="body1" color="text.secondary">
-          620000 VND
+          {product.price} VND
         </Typography>
         <Typography
           variant="body1"
           sx={{
-            color: 1 > 0 ? setup.success : setup.error,
+            color: product.quantity > 0 ? setup.success : setup.error,
           }}
         >
-          {1 > 0 ? "Còn hàng" : "Hết hàng"}
+          {product.quantity > 0 ? "Còn hàng" : "Hết hàng"}
         </Typography>
       </CardContent>
       <CardActions
@@ -52,6 +61,7 @@ export default function ProductCard({ product }: any) {
           alignItems: "center",
           justifyContent: "space-between",
           margin: "auto",
+          paddingTop: "0rem"
         }}
       >
         <Button>Chi tiết</Button>
