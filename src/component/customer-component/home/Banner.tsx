@@ -6,7 +6,8 @@ export default function Banner() {
         component="img"
         alt="green iguana"
         image="/assets/images/banner.jpg" style={{
-          height: "30rem"
+          height: "28rem",
+          borderRadius: "1rem"
         }}
       />
   )

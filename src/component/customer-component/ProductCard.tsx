@@ -37,7 +37,8 @@ export default function ProductCard({ product }: any) {
           overflow: "hidden",
           height: "3.1rem",
           fontWeight: "600",
-          fontSize: "1.1rem"
+          fontSize: "1.1rem",
+          fontFamily: 'Fraunces'
         }}>
           {product.productName}
         </Typography>
@@ -64,7 +65,9 @@ export default function ProductCard({ product }: any) {
           paddingTop: "0rem"
         }}
       >
-        <Button>Chi tiết</Button>
+        <Button sx={{
+          color: "black"
+        }}>Chi tiết</Button>
         <IconButton size="large">
           <AddShoppingCartIcon />
         </IconButton>

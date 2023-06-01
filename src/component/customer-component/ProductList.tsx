@@ -1,7 +1,7 @@
 import { Grid, Pagination } from '@mui/material'
 import React, { useState } from 'react'
 import ProductCard from './ProductCard'
-
+import { setup } from "@/config/setup";
 export default function ProductList({ productList } : any) {
     const [page, setPage] = useState(1)
   return (
@@ -20,8 +20,22 @@ export default function ProductList({ productList } : any) {
           behavior: 'smooth'
         })
     }} sx={{
-      float:"right"
-    }}/>
+      float: "right",
+      marginTop: "1rem",
+      "& .MuiButtonBase-root": {
+        color: "black",
+      },
+      // "& .MuiButtonBase-root-MuiPaginationItem-root": {
+      "& .Mui-selected": {
+        backgroundColor: `${setup.navigationColor} !important`,
+      },
+      // },
+      "& .MuiButtonBase-root:hover": {
+        background: setup.navigationColor,
+      },
+    }}
+    shape="rounded"
+    color="primary"/>
    </>
   )
 }

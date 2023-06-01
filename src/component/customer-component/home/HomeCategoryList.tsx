@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import ProductCard from "../ProductCard";
 import { useRouter } from "next/router";
+import { setup } from "@/config/setup";
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 export default function HomeCategoryList({ categoryAndProduct }: any) {
   const router = useRouter();
   return (
@@ -29,12 +31,13 @@ export default function HomeCategoryList({ categoryAndProduct }: any) {
         <Typography
           sx={{
             cursor: "pointer",
+            display: "flex"
           }}
           onClick={() => {
             router.push(`/customer/search?categoryId=${categoryAndProduct.categoryId}`);
           }}
         >
-          xem thêm
+          xem thêm<TrendingFlatIcon/>
         </Typography>
       </div>
       <Container maxWidth="lg">

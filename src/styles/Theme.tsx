@@ -5,7 +5,7 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: 'rgb(0 0 0)', // Mã màu chủ đạo mới
+      main: '#feAFA2', // Mã màu chủ đạo mới
     },
   },
   typography: {

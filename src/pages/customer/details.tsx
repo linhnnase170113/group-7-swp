@@ -56,7 +56,7 @@ export default function Details() {
             display: "flex",
             alignItems: "center"
           }}>
-            <input type="number" value={1} style={{
+            <input type="number" defaultValue={1} style={{
               width: "4rem",
               height: "2rem",
             }}/>

@@ -65,15 +65,17 @@ export default function UserNavigation({ categoryList }: any) {
         position="fixed"
         sx={{
           padding: "1rem",
-          backgroundColor: setup.navigationColor,
           color: setup.color,
           "& .MuiButtonBase-root": {
             boxShadow: "none",
             margin: "0 1rem",
             color: setup.color,
+            fontWeight: "700",
+            fontSize: "large",
           },
           "& .MuiButtonBase-root:hover": {
             backgroundColor: "inherit",
+            border: "none"
           },
         }}
       >
@@ -92,7 +94,8 @@ export default function UserNavigation({ categoryList }: any) {
                   display: {
                     xs: "none", sm: "block", cursor: "pointer",
                     letterSpacing: '.1rem',
-                  }
+                  },
+                  fontFamily: 'Roboto Serif'
                 }}
                 onClick={() => {
                   router.push("/customer");
@@ -101,13 +104,15 @@ export default function UserNavigation({ categoryList }: any) {
                 {setup.name}
               </Typography>
               <Typography
-                variant="subtitle1"
+                variant="h6"
                 component="div"
                 sx={{
                   display: {
                     xs: "none", sm: "block", cursor: "pointer",
                     letterSpacing: '.1rem',
-                    textAlign: "center"
+                    textAlign: "center",
+                    fontFamily: 'Charm',
+                    fontWeight: "550",
                   }
                 }}
               >
@@ -118,13 +123,16 @@ export default function UserNavigation({ categoryList }: any) {
               <TextField
                 sx={{
                   "& .MuiInputBase-root": {
-                    border: "1px solid black",
+                    border: "1px solid white",
                     borderRadius: "1rem",
+                    backgroundColor: setup.color
                   },
                   width: "30rem"
                 }}
                 InputProps={{
-                  startAdornment: <SearchIcon />,
+                  startAdornment: <SearchIcon sx={{
+                    color: setup.navigationColor,
+                  }} />,
                 }}
                 size="small"
                 defaultValue=""
@@ -177,7 +185,7 @@ export default function UserNavigation({ categoryList }: any) {
               height: "2rem",
               marginTop: "1rem",
               paddingTop: "0.5rem",
-              borderTop: "1px solid gray",
+              borderTop: "1px solid white",
             }}
           >
             <Grid container spacing={0}>
@@ -189,9 +197,9 @@ export default function UserNavigation({ categoryList }: any) {
                 </Button>
               </Grid>
               {categoryList != null ? categoryList.map((item: any) => (
-                <Grid item xs={2} key={item.categoryId}>
+                <Grid item xs={2.4} key={item.categoryId}>
                   <Button
-                  fullWidth
+                     fullWidth
                     onClick={() => {
                       router.push(`/customer/search?categoryId=${item.categoryId}`);
                     }}
