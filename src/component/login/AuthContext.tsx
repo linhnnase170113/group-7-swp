@@ -32,6 +32,7 @@ export default function AuthProvider({ children }: any) {
       if (userBackend === null) {
         router.push("/information")
       }  else {
+        setCurrentUser(auth)
         router.push("/")
       }
     } catch (errors) {
