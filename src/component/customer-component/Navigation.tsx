@@ -151,7 +151,8 @@ export default function UserNavigation({ categoryList }: any) {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu} onClick={() => {
+                <MenuItem key={setting}onClick={() => {
+                  handleCloseUserMenu()
                   setting === "Logout" ? logout() : null
                 }}>
                   <Typography textAlign="center">{setting}</Typography>
