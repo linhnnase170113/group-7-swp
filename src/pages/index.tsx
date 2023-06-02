@@ -1,7 +1,7 @@
+import { UserContext } from '@/component/login/AuthContext'
 import { CardMedia } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-
+import React, { useContext, useEffect } from 'react'
 export default function Home() {
   const router = useRouter()
   useEffect(() => {

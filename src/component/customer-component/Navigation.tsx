@@ -16,8 +16,9 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { UserContext } from "../login/AuthContext";
 import { useContext } from "react";
 import SearchBox from "./navigation/SearchBox";
+import { auth } from "@/config/firebase";
 export default function UserNavigation({ categoryList }: any) {
-  const { user, logout } = useContext(UserContext)
+  const { logout, user } = useContext(UserContext)
   const settings = ['Profile', 'Logout'];
   const router = useRouter();
   const navItem = [

@@ -15,10 +15,7 @@ import { UserContext } from "./AuthContext";
 
 export default function LoginCard({ setSign }: any) {
   const router = useRouter();
-  const { loginGoogle, login, logout, user, register } = useContext(UserContext)
-  useEffect(() => {
-    console.log(user)
-  }, [user])
+  const { loginGoogle, login, logout, register } = useContext(UserContext)
   return (
     <>
       <OutlinedInput

@@ -10,31 +10,25 @@ import {
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 const userAction = {
-  user: null,
   loginGoogle: () => {},
   register: ({ email, password }: any) => {},
   login: ({ email, password }: any) => {},
   logout: () => {},
   createUser: ( address : any, userName: any, phoneNumber: any ) => {},
+  user : null
 };
 export const UserContext = createContext(userAction);
 
 export default function AuthProvider({ children }: any) {
   const router = useRouter()
-  const [currentUser, setCurrentUser] = useState<any>();
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [userFirebase, setUserFirebase] = useState<any>()
   const [userBackend, setUserbackend] = useState<any>()
   const loginGoogle = async () => {
     try {
       const response = await signInWithPopup(auth, ggProvider);
-      const userFirebase = response.user;
-      const userBackend = await getUserBackendApi(userFirebase.uid)
-      if (userBackend === null) {
-        router.push("/information")
-      }  else {
-        setCurrentUser(auth)
-        router.push("/")
-      }
+      router.push("/")
+
     } catch (errors) {
       return errors;
     }
@@ -42,9 +36,7 @@ export default function AuthProvider({ children }: any) {
   const login = async ({ email, password }: any) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      const user = response.user;
-      console.log(user);
-      return true;
+      router.push("/")
     } catch (errors) {
       return errors;
     }
@@ -53,7 +45,6 @@ export default function AuthProvider({ children }: any) {
     try {
       const response = await signOut(auth);
       router.push("/")
-      return true;
     } catch (errors) {
       return errors;
     }
@@ -65,35 +56,44 @@ export default function AuthProvider({ children }: any) {
         email,
         password
       );
-      const user = response.user;
-      console.log(user);
-      return true;
+      router.push("/")
     } catch (errors) {
       return errors;
     }
   };
   const createUser = async ( address: any , userName: any , phoneNumber : any ) => {
-    // console.log({address, userName, phoneNumber})
     const response = await createUserApi(auth.currentUser?.email, phoneNumber, address, auth.currentUser?.uid, userName)
     if (response) {
-      setCurrentUser(true)
+      setCurrentUser(auth.currentUser)
       router.push("/")
     } else {
 
     }
   }
-  const user = currentUser;
+  const user = currentUser
   useEffect(() => {
+    console.log(currentUser)
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      currentUser !== null ? setCurrentUser(auth) : setCurrentUser(null);
+     if (currentUser !== null) {
+      const getUserBackend = async (userUid:any) => {
+        const userBackend = await getUserBackendApi(userUid)
+        userBackend !== null ? setCurrentUser(auth.currentUser) : router.push("/information")
+        // router.push("/admin")
+        console.log(userBackend)
+      }
+      getUserBackend(currentUser.uid)
+     } else {
+      setCurrentUser(null)
+      router.push("/")
+     }
     });
     return () => {
       unSubscribe();
     };
-  }, [user]);
+  }, [currentUser]);
   return (
     <UserContext.Provider
-      value={{ loginGoogle, login, logout, user, register, createUser }}
+      value={{ loginGoogle, login, logout, register, createUser, user }}
     >
       {children}
     </UserContext.Provider>

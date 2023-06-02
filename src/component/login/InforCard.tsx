@@ -1,6 +1,6 @@
 import { Typography, OutlinedInput, Button } from '@mui/material';
 import router from 'next/router';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PersonIcon from "@mui/icons-material/Person";
 import AddHomeIcon from '@mui/icons-material/AddHome';
@@ -10,9 +10,11 @@ import { useForm } from 'react-hook-form';
 const button = "back to home"
 export default function InforCard() {
   const { handleSubmit, register } = useForm();
-  const { createUser } = useContext(UserContext)
+  const { createUser, logout } = useContext(UserContext)
   const onSubmit = (data: any) => createUser(data.address, data.userName, data.phoneNumber)
   // const onSubmit = (data: any) =>console.log(data)
+  useEffect(() => {
+  }, [])
   return (
     <>
     <form onSubmit={handleSubmit(onSubmit)}>
