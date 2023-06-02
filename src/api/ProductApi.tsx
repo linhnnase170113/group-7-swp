@@ -27,11 +27,10 @@ export const getProductListApi =async () => {
     }
 }
 export const getProductByProductIdApi =async (productId: any) => {
-    const response = await fetch(`http://localhost:8080/api/product/allProduct`)
+    const response = await fetch(`http://localhost:8080/api/product/getProductById?productId=${productId}`)
     if (response.ok) {
-        const productList : any = await response.json()
-        console.log(productList)
-        return productList.find((item: any) => Number.parseInt(productId) === item.productId)
+        const product : any = await response.json()
+        return product
     } else {
         return null
     }

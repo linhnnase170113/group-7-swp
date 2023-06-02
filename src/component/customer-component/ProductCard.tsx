@@ -38,7 +38,6 @@ export default function ProductCard({ product }: any) {
           height: "3.1rem",
           fontWeight: "600",
           fontSize: "1.1rem",
-          fontFamily: 'Fraunces'
         }}>
           {product.productName}
         </Typography>

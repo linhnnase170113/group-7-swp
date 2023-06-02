@@ -38,7 +38,7 @@ export default function Login() {
           }}
         >
           Welcome to {setup.name}
-    </DialogTitle>
+        </DialogTitle>
         <DialogContent>
           {sign === false ? <LoginCard setSign={setSign} /> : <RegisterCard setSign={setSign} />}
         </DialogContent>
