@@ -8,16 +8,17 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
 import { setup } from "../../config/setup";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Button, Container, Grid, TextField } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Button, Container, Grid } from "@mui/material";
 import { useRouter } from "next/router";
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import { UserContext } from "../login/AuthContext";
+import { useContext } from "react";
+import SearchBox from "./navigation/SearchBox";
 export default function UserNavigation({ categoryList }: any) {
+  const { user, logout } = useContext(UserContext)
   const router = useRouter();
-  const { handleSubmit, register } = useForm();
   const navItem = [
     { name: "about", url: "" },
     { name: "contact", url: "" },
@@ -34,9 +35,6 @@ export default function UserNavigation({ categoryList }: any) {
     setAnchorEl(null);
   };
 
-  const onSubmit = (data: any) => {
-    router.push(`/customer/search?productName=${data.searchValue}`);
-  };
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -55,7 +53,10 @@ export default function UserNavigation({ categoryList }: any) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => {
+        handleMenuClose()
+        // logout()
+      }}>Logout</MenuItem>
     </Menu>
   );
 
@@ -69,6 +70,7 @@ export default function UserNavigation({ categoryList }: any) {
           "& .MuiButtonBase-root": {
             boxShadow: "none",
             margin: "0 1rem",
+            padding: "0px",
             color: setup.color,
             fontWeight: "700",
             fontSize: "medium",
@@ -95,6 +97,7 @@ export default function UserNavigation({ categoryList }: any) {
                     xs: "none", sm: "block", cursor: "pointer",
                     letterSpacing: '.1rem',
                   },
+                  paddingRight: "2rem",
                   fontFamily: 'Roboto Serif'
                 }}
                 onClick={() => {
@@ -119,31 +122,12 @@ export default function UserNavigation({ categoryList }: any) {
                 Decoration and Gift
               </Typography>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField
-                sx={{
-                  "& .MuiInputBase-root": {
-                    border: "1px solid white",
-                    borderRadius: "1rem",
-                    backgroundColor: setup.color
-                  },
-                  width: "30rem"
-                }}
-                InputProps={{
-                  startAdornment: <SearchIcon sx={{
-                    color: setup.navigationColor,
-                  }} />,
-                }}
-                size="small"
-                defaultValue=""
-                {...register("searchValue", { required: true })}
-              />
-            </form>
+            <SearchBox/>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               {navItem.map((item, key) => (
                 <Button key={key}>{item.name}</Button>
               ))}
-              {true ? (
+              {user === null ? (
                 <Button
                   onClick={() => {
                     router.push("/login");
@@ -156,7 +140,10 @@ export default function UserNavigation({ categoryList }: any) {
                 </Button>
               ) : (
                 <>
-                  <IconButton className="navbar" color="inherit">
+                  <IconButton className="navbar" color="inherit" sx={{
+                      margin: "0 1rem",
+                      transform: "scale(1.2)"
+                    }}>
                     <Badge badgeContent={4} color="error">
                       <ShoppingBagIcon />
                     </Badge>
@@ -164,6 +151,7 @@ export default function UserNavigation({ categoryList }: any) {
                   <IconButton
                     sx={{
                       margin: "0 1rem",
+                      transform: "scale(1.3)"
                     }}
                     className="navbar"
                     size="large"

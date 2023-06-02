@@ -1,3 +1,4 @@
+import { createUserApi } from "@/api/UserApi";
 import { auth, ggProvider } from "@/config/firebase";
 import {
   createUserWithEmailAndPassword,
@@ -23,6 +24,8 @@ export default function AuthProvider({ children }: any) {
       const response = await signInWithPopup(auth, ggProvider);
       const user = response.user;
       console.log(user);
+      await createUserApi("")
+      setCurrentUser(user)
       return true;
     } catch (errors) {
       return errors;
@@ -63,7 +66,7 @@ export default function AuthProvider({ children }: any) {
   const user = currentUser;
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      currentUser !== null ? setCurrentUser(true) : setCurrentUser(false);
+      currentUser !== null ? setCurrentUser(true) : setCurrentUser(null);
     });
     return () => {
       unSubscribe();
