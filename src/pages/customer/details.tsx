@@ -17,7 +17,7 @@ export default function Details() {
       setProduct(product)
     }
     getProduct()
-  }, [product])
+  }, [])
   return (
     <UserLayout>
       {product !== null ? (<Paper sx={{
