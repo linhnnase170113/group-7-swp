@@ -4,7 +4,7 @@ import { Grid } from "@mui/material"
 import { useRouter } from 'next/router'
 import Filter from '@/component/customer-component/search/Filter';
 import SearchList from '@/component/customer-component/search/SearchList';
-import { getProductListByCategoryApi, getProductListByNameApi } from '@/api/ProductApi';
+import { getProductListApi, getProductListByCategoryApi, getProductListByNameApi } from '@/api/ProductApi';
 import { block } from '@/config/setup';
 
 export default function Search() {
@@ -18,10 +18,15 @@ export default function Search() {
       const getProductListByCategory =async () => {
         setProductList(await getProductListByCategoryApi(categoryId))
       }
+      const getProductList = async () => {
+        setProductList(await getProductListApi())
+      }
       if (productName !== undefined) {
         getProductListByName()
       } else if (categoryId !== undefined) {
         getProductListByCategory()
+      } else {
+        getProductList()
       }
     }, [productName, categoryId])
   return (

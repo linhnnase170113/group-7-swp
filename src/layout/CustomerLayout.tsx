@@ -29,7 +29,6 @@ export default function UserLayout({ children } : any) {
           position: "relative"
       }}>{children}</Container>
       <Footer/>
-      <img src="/assets/images/footer.png"/>
     </div>
   );
 }

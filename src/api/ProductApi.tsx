@@ -8,6 +8,7 @@ export const getProductListByNameApi =async (productName: any) => {
     }
 }
 export const getProductListByCategoryApi =async (categoryId: any) => {
+    console.log(`http://localhost:8080/api/product/filterByCategory?categoryId=${categoryId}`)
     const response = await fetch(`http://localhost:8080/api/product/filterByCategory?categoryId=${categoryId}`)
     if (response.ok) {
         const productList : any = await response.json()
@@ -21,7 +22,7 @@ export const getProductListApi =async () => {
     const response = await fetch(`http://localhost:8080/api/product/allProduct`)
     if (response.ok) {
         const productList : any = await response.json()
-        return 
+        return productList
     } else {
         return []
     }
