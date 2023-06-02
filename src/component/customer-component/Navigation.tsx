@@ -10,7 +10,7 @@ import Menu from "@mui/material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { setup } from "../../config/setup";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Button, Container, Grid } from "@mui/material";
+import { Button, Container, Grid, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { UserContext } from "../login/AuthContext";
@@ -18,6 +18,7 @@ import { useContext } from "react";
 import SearchBox from "./navigation/SearchBox";
 export default function UserNavigation({ categoryList }: any) {
   const { user, logout } = useContext(UserContext)
+  const settings = ['Profile', 'Logout'];
   const router = useRouter();
   const navItem = [
     { name: "about", url: "" },
@@ -27,38 +28,16 @@ export default function UserNavigation({ categoryList }: any) {
 
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleProfileMenuOpen = (event: any) => {
-    setAnchorEl(event.currentTarget);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
+  const handleOpenUserMenu = (event: any) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={() => {
-        handleMenuClose()
-        // logout()
-      }}>Logout</MenuItem>
-    </Menu>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -148,22 +127,37 @@ export default function UserNavigation({ categoryList }: any) {
                       <ShoppingBagIcon />
                     </Badge>
                   </IconButton>
-                  <IconButton
-                    sx={{
-                      margin: "0 1rem",
-                      transform: "scale(1.3)"
-                    }}
-                    className="navbar"
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={menuId}
-                    aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
+                  <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, margin: "0 1rem",
+                      transform: "scale(1.3)" }}>
+                <AccountCircle />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu} onClick={() => {
+                  setting === "Logout" ? logout() : null
+                }}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
                 </>
               )}
             </Box>
@@ -200,7 +194,6 @@ export default function UserNavigation({ categoryList }: any) {
           </div>
         </Container>
       </AppBar>
-      {renderMenu}
     </Box>
   );
 }

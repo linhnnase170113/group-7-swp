@@ -11,13 +11,7 @@ export default function RegisterCard({ setSign }: any) {
   const router = useRouter();
   return (
     <>
-      <Typography variant="h5">Register</Typography>
-      <OutlinedInput
-        placeholder="Name"
-        endAdornment={<PersonIcon />}
-        className="input-login"
-        onChange={(e) => {}}
-      />
+      <Typography variant="h5">Đăng kí</Typography>
       <OutlinedInput
         placeholder="Email"
         endAdornment={<EmailIcon />}
@@ -28,16 +22,6 @@ export default function RegisterCard({ setSign }: any) {
         placeholder="Password"
         endAdornment={<LockPersonIcon />}
         className="input-login"
-        onChange={(e) => {}}
-      />
-      <OutlinedInput
-        placeholder="Phone"
-        endAdornment={<LocalPhoneIcon />}
-        sx={{
-          marginTop: "0.5rem",
-          width: "100%",
-          marginBottom: "1rem",
-        }}
         onChange={(e) => {}}
       />
       <Button

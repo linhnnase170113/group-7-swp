@@ -18,7 +18,7 @@ export default function LoginCard({ setSign }: any) {
   const { loginGoogle, login, logout, user, register } = useContext(UserContext)
   useEffect(() => {
     console.log(user)
-  })
+  }, [user])
   return (
     <>
       <OutlinedInput
@@ -90,6 +90,7 @@ export default function LoginCard({ setSign }: any) {
             <Button
               variant="contained"
               sx={{
+                backgroundColor: setup.navigationColor,
                 color: "black"
               }}
             >
