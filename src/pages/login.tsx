@@ -27,7 +27,18 @@ export default function Login() {
         }}
       />
       <Dialog open={true} maxWidth="xs" fullWidth>
-        <DialogTitle>Welcome to {setup.name}</DialogTitle>
+        <DialogTitle
+          sx={{
+            display: {
+              xs: "none", sm: "block", cursor: "pointer",
+              letterSpacing: '.1rem',
+            },
+            fontSize: "1.5rem",
+            fontFamily: 'Roboto Serif'
+          }}
+        >
+          Welcome to {setup.name}
+    </DialogTitle>
         <DialogContent>
           {sign === false ? <LoginCard setSign={setSign} /> : <RegisterCard setSign={setSign} />}
         </DialogContent>

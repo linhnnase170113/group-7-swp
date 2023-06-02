@@ -67,7 +67,9 @@ export default function LoginCard({ setSign }: any) {
       </Button>
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
           <Button
-          className="login-button"
+          sx={{
+            color: "black"
+          }}
             onClick={() => {
               router.push("/");
             }}
@@ -76,7 +78,9 @@ export default function LoginCard({ setSign }: any) {
           </Button>
           <div>
             <Button
-            className="login-button"
+            sx={{
+              color: "black"
+            }}
               onClick={() => {
                 setSign(true);
               }}
@@ -84,10 +88,9 @@ export default function LoginCard({ setSign }: any) {
               Register
             </Button>
             <Button
-            className="login-button"
               variant="contained"
               sx={{
-                color: setup.navigationColor,
+                color: "black"
               }}
             >
               Login
