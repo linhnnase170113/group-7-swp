@@ -3,7 +3,6 @@ import {
   CardMedia,
   Checkbox,
   IconButton,
-  Link,
   MenuItem,
   Paper,
   Select,
@@ -21,6 +20,7 @@ import {
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 export default function ProductTable({ productList }: any) {
   const [searchType, setSearchType] = useState<any>(0);
   const [selectProducts, setSelectProducts] = useState<any>([]);
@@ -85,6 +85,15 @@ export default function ProductTable({ productList }: any) {
                 height: 30,
               }}
               color="error"
+            />
+          </Button>
+          <Button aria-label="add" onClick={() => {}}>
+            <AddBoxIcon
+              style={{
+                width: 30,
+                height: 30,
+              }}
+              color="success"
             />
           </Button>
         </div>
