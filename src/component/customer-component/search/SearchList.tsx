@@ -8,8 +8,7 @@ export default function SearchList({productList, productName} : any) {
         <>
         {productName !== undefined ? (<Typography variant="h4">
             {`Kết quả tìm kiếm cho "${productName}"`}
-        </Typography>) : (<></>)}
-        
+        </Typography>) : null}
           <Typography variant="subtitle1" sx={{
             fontWeight: "600",
             color:"gray",
