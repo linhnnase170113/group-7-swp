@@ -64,7 +64,7 @@ export default function RegisterCard({ setSign }: any) {
         sx={{
           marginTop: "0.5rem",
           width: "100%",
-          marginBottom: "1rem",
+          marginBottom: "0.5rem",
         }}
       />
       <Button
