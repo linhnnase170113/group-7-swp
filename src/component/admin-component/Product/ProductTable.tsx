@@ -136,7 +136,7 @@ export default function ProductTable({ productList }: any) {
                 <TableCell align="justify">{row.productName}</TableCell>
                 <TableCell>{row.price}</TableCell>
                 <TableCell>{row.quantity}</TableCell>
-                <TableCell>{row.category}</TableCell>
+                <TableCell>{row.categoryId}</TableCell>
                 <TableCell align="justify">{row.description}</TableCell>
                 <TableCell align="justify">{row.status}</TableCell>
                 <TableCell>
