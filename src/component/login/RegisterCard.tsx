@@ -40,7 +40,11 @@ export default function RegisterCard({ setSign }: any) {
         {...register("email", {
           required: true
         })}
-        className="input-login"
+        sx={{
+          marginTop: "0.5rem",
+          width: "100%",
+          marginBottom: "1rem",
+        }}
       />
       <TextField
         placeholder="Password"
@@ -57,7 +61,11 @@ export default function RegisterCard({ setSign }: any) {
           required: true,
           minLength: 6
         })}
-        className="input-login"
+        sx={{
+          marginTop: "0.5rem",
+          width: "100%",
+          marginBottom: "1rem",
+        }}
       />
       <Button
         variant="contained"
