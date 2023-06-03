@@ -133,7 +133,7 @@ export default function ProductTable({ productList }: any) {
                     }}
                   />
                 </TableCell>
-                <TableCell align="justify">{row.productName}</TableCell>
+                <TableCell>{row.productName}</TableCell>
                 <TableCell>{row.price}</TableCell>
                 <TableCell>{row.quantity}</TableCell>
                 <TableCell>{row.categoryId}</TableCell>
