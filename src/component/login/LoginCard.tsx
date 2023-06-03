@@ -24,14 +24,6 @@ export default function LoginCard({ setSign }: any) {
   const { loginGoogle, login, } = useContext(UserContext)
   const onSubmit = (data : any) => {
     const errors = login(data.email, data.password)
-    if (errors !== undefined) {
-      dispatch(
-        setOpen({
-          open: true,
-          message: "Wrong email or password",
-          severity: "error",
-        })
-      );
     }
   }
   return (

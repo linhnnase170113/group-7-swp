@@ -37,8 +37,15 @@ export default function AuthProvider({ children }: any) {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       router.push("/customer");
+      return "success";
     } catch (error: any) {
-      return error.message;
+      dispatch(
+        setOpen({
+          open: true,
+          message: "Wrong email or password",
+          severity: "error",
+        })
+      );
     }
   };
   const logout = async () => {
