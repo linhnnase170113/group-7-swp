@@ -4,7 +4,7 @@ export const getProductListByNameApi =async (productName: any) => {
         const productList : any = await response.json()
         return productList
     } else {
-        return []
+        return null
     }
 }
 export const getProductListByCategoryApi =async (categoryId: any) => {
@@ -15,7 +15,7 @@ export const getProductListByCategoryApi =async (categoryId: any) => {
         console.log(productList)
         return productList
     } else {
-        return []
+        return null
     }
 }
 export const getProductListApi =async () => {
