@@ -9,14 +9,15 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { setup } from '@/config/setup'
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import InfoIcon from '@mui/icons-material/Info';
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import { useContext } from 'react';
 import { UserContext } from '../login/AuthContext';
 const settings = ['Profile', 'Logout'];
 function AdminNavigationTop() {
-  const { createUser, logout } = useContext(UserContext)
+  const { logout } = useContext(UserContext)
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
 
@@ -31,9 +32,10 @@ function AdminNavigationTop() {
   return (
     <AppBar position="static"
       sx={{
-        backgroundColor: "rgba(0,0,0,0)",
+        backgroundColor: "white",
         color: setup.color,
         boxShadow: "none",
+        height: "80px",
         "& .MuiButtonBase-root": {
           boxShadow: "none",
           margin: "0 1rem",
@@ -47,21 +49,29 @@ function AdminNavigationTop() {
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open notification">
-              <IconButton >
-                <InfoIcon />
+              <IconButton size='large' >
+                <InfoOutlinedIcon sx={{
+                  transform: "scale(1.3)",
+                  color: "#0d6efd"
+                }}/>
               </IconButton>
             </Tooltip>
             <Tooltip title="Open notification">
-              <IconButton >
-                <NotificationsIcon />
+              <IconButton  size='large'>
+                <NotificationsOutlinedIcon sx={{
+                  transform: "scale(1.3)",
+                  color: "#0d6efd"
+                }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircle />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} size='large'>
+                <AccountCircleOutlinedIcon sx={{
+                  transform: "scale(1.3)",
+                  color: "#0d6efd"
+                }}/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -84,7 +94,8 @@ function AdminNavigationTop() {
                 <MenuItem key={setting} onClick={() => {
                   handleCloseUserMenu()
                   logout()
-                }}>
+                }}
+                >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

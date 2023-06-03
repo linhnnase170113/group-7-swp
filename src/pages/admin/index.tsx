@@ -1,10 +1,6 @@
-import AdminLayout from '@/layout/AdminLayout'
-import React from 'react'
+import AdminLayout from "@/layout/AdminLayout";
+import React from "react";
 
 export default function Index() {
-  return (
-    <AdminLayout>
-      
-    </AdminLayout>
-  )
+  return <AdminLayout></AdminLayout>;
 }

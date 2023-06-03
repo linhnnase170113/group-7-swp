@@ -6,11 +6,12 @@ import Filter from '@/component/customer-component/search/Filter';
 import SearchList from '@/component/customer-component/search/SearchList';
 import { getProductListApi, getProductListByCategoryApi, getProductListByNameApi } from '@/api/ProductApi';
 import { block } from '@/config/setup';
+import Loading from '@/component/Loading';
 
 export default function Search() {
     const router = useRouter();
     const { productName, categoryId } = router.query
-    const [productList, setProductList] = useState<any>([])
+    const [productList, setProductList] = useState<any>(null)
     useEffect(() => {
       const getProductListByName = async () => {
         setProductList(await getProductListByNameApi(block(productName)))
@@ -33,7 +34,7 @@ export default function Search() {
     <UserLayout>
         <Grid container spacing={2}>
             <Grid item xs={3}><Filter/></Grid>
-            <Grid item xs={9}><SearchList productList={productList} productName={productName}/></Grid>
+            <Grid item xs={9}>{productList !== null ? (<SearchList productList={productList} productName={productName}/>) : <Loading/>}</Grid>
         </Grid>
     </UserLayout>
   )

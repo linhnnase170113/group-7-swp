@@ -11,7 +11,7 @@ import { setOpen } from "@/feature/Alert";
 export default function RegisterCard({ setSign }: any) {
   const { register, handleSubmit, formState: { errors }, } = useForm()
   const dispatch = useAppDispatch()
-  const { registerFirebase } = useContext(UserContext)
+  const { registerFirebase, loginGoogle } = useContext(UserContext)
   const router = useRouter();
   const onSubmit = (data : any) => {
     const error = registerFirebase(data.email, data.password)
@@ -70,7 +70,7 @@ export default function RegisterCard({ setSign }: any) {
       <Button
         variant="contained"
         style={{ backgroundColor: "#F5A524", marginTop: ".8rem" }}
-        onClick={() => {}}
+        onClick={() => {loginGoogle()}}
         fullWidth
         className="login-button"
       >

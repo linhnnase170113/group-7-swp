@@ -26,7 +26,12 @@ export default function Login() {
           position: "absolute",
         }}
       />
-      <Dialog open={true} maxWidth="xs" fullWidth>
+      <Dialog open={true} maxWidth="xs" fullWidth sx={{
+        "& .MuiPaper-root" : {
+          border: "3px solid #FEAFA2",
+          borderRadius: "1rem"
+        }
+      }}>
         <DialogTitle
           sx={{
             display: {
@@ -34,7 +39,7 @@ export default function Login() {
               letterSpacing: '.1rem',
             },
             fontSize: "1.5rem",
-            fontFamily: 'Roboto Serif'
+            fontFamily: 'Roboto Serif',
           }}
         >
           Welcome to {setup.name}

@@ -90,11 +90,11 @@ export default function AuthProvider({ children }: any) {
           severity: "success",
         })
       );
-        if (userBackend.userRole === 1) {
-          router.push("/admin");
-        } else {
-          router.push("/customer");
-        }
+      if (userBackend.userRole === 1) {
+        router.push("/admin");
+      } else {
+        router.push("/customer");
+      }
       setCurrentUser(auth.currentUser);
     } else {
       router.push("/information");
