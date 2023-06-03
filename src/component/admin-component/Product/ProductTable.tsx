@@ -21,7 +21,7 @@ import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-export default function ProductTable({ productList }: any) {
+export default function ProductTable({ productList, categoryList }: any) {
   const [searchType, setSearchType] = useState<any>(0);
   const [selectProducts, setSelectProducts] = useState<any>([]);
   const [page, setPage] = useState(0);
@@ -136,7 +136,7 @@ export default function ProductTable({ productList }: any) {
                 <TableCell>{row.productName}</TableCell>
                 <TableCell>{row.price}</TableCell>
                 <TableCell>{row.quantity}</TableCell>
-                <TableCell>{row.categoryId}</TableCell>
+                <TableCell>{categoryList.filter((category : any) => category.categoryId === row.categoryId) }</TableCell>
                 <TableCell align="justify">{row.description}</TableCell>
                 <TableCell align="justify">{row.status}</TableCell>
                 <TableCell>
