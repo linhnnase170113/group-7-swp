@@ -24,7 +24,7 @@ export default function LoginCard({ setSign }: any) {
   const { loginGoogle, login, } = useContext(UserContext)
   const onSubmit = (data : any) => {
     const errors = login(data.email, data.password)
-    }
+    
   }
   return (
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -114,6 +114,6 @@ export default function LoginCard({ setSign }: any) {
         </div>
       </form>
   );
-}
+            }
 
 
