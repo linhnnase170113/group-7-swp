@@ -28,7 +28,6 @@ export default function AuthProvider({ children }: any) {
   const loginGoogle = async () => {
     try {
       const response = await signInWithPopup(auth, ggProvider);
-      router.push("/customer");
     } catch (error: any) {
       return error.message;
     }
@@ -36,8 +35,6 @@ export default function AuthProvider({ children }: any) {
   const login = async (email: any, password: any) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      router.push("/customer");
-      return "success";
     } catch (error: any) {
       dispatch(
         setOpen({
@@ -82,6 +79,7 @@ export default function AuthProvider({ children }: any) {
     } else {
     }
   };
+
   const getUserBackend = async (userUid: any) => {
     const userBackend = await getUserBackendApi(userUid);
     if (userBackend !== null) {
@@ -92,6 +90,11 @@ export default function AuthProvider({ children }: any) {
           severity: "success",
         })
       );
+        if (userBackend.userRole === 1) {
+          router.push("/admin");
+        } else {
+          router.push("/customer");
+        }
       setCurrentUser(auth.currentUser);
     } else {
       router.push("/information");

@@ -41,9 +41,9 @@ export default function ProductTable({ productList }: any) {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Name</MenuItem>
-            <MenuItem value={20}>Category</MenuItem>
-            <MenuItem value={30}>Description</MenuItem>
+            <MenuItem >Name</MenuItem>
+            <MenuItem >Category</MenuItem>
+            <MenuItem >Description</MenuItem>
           </Select>
           <TextField label="Search" size="small" variant="filled" />
         </div>
@@ -81,7 +81,7 @@ export default function ProductTable({ productList }: any) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {productList
+          { productList
             .slice(0 + page * rowsPerPage, (page + 1) * rowsPerPage)
             .map((row: any) => (
               <TableRow key={row.productId}>

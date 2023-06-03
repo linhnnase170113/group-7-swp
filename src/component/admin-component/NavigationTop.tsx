@@ -12,9 +12,11 @@ import { setup } from '@/config/setup'
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import InfoIcon from '@mui/icons-material/Info';
+import { useContext } from 'react';
+import { UserContext } from '../login/AuthContext';
 const settings = ['Profile', 'Logout'];
-
 function AdminNavigationTop() {
+  const { createUser, logout } = useContext(UserContext)
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
 
@@ -79,7 +81,10 @@ function AdminNavigationTop() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => {
+                  handleCloseUserMenu()
+                  logout()
+                }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
