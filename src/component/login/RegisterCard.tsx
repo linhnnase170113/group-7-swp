@@ -1,28 +1,63 @@
-import { Typography, OutlinedInput, Button } from "@mui/material";
-import React from "react";
+import { Typography, OutlinedInput, Button, TextField, InputAdornment } from "@mui/material";
+import React, { useContext } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import PersonIcon from "@mui/icons-material/Person";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useRouter } from "next/router";
-import { setup } from "@/config/setup";
+import { useForm } from "react-hook-form";
+import { UserContext } from "./AuthContext";
+import { useAppDispatch } from "@/feature/Hooks";
+import { setOpen } from "@/feature/Alert";
 export default function RegisterCard({ setSign }: any) {
+  const { register, handleSubmit, formState: { errors }, } = useForm()
+  const dispatch = useAppDispatch()
+  const { registerFirebase } = useContext(UserContext)
   const router = useRouter();
+  const onSubmit = (data : any) => {
+    const error = registerFirebase(data.email, data.password)
+    error !== undefined ? dispatch(
+      setOpen({
+        open: true,
+        message: "Register success",
+        severity: "success",
+      })
+    ) : null
+  }
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h5">Đăng kí</Typography>
-      <OutlinedInput
+      <TextField
         placeholder="Email"
-        endAdornment={<EmailIcon />}
+        error= {errors.email !== undefined}
+        helperText={ errors.email !== undefined ? "bắt buộc" : ""}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <EmailIcon />
+            </InputAdornment>
+          ),
+        }}
+        {...register("email", {
+          required: true
+        })}
         className="input-login"
-        onChange={(e) => {}}
       />
-      <OutlinedInput
+      <TextField
         placeholder="Password"
-        endAdornment={<LockPersonIcon />}
+        error= {errors.password !== undefined}
+        helperText={ errors.password !== undefined ? "bắt buộc ít nhất 6 kí tự" : ""}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <LockPersonIcon />
+            </InputAdornment>
+          ),
+        }}
+        {...register("password", {
+          required: true,
+          minLength: 6
+        })}
         className="input-login"
-        onChange={(e) => {}}
       />
       <Button
         variant="contained"
@@ -67,11 +102,12 @@ export default function RegisterCard({ setSign }: any) {
             sx={{
               color: "black"
             }}
+            type="submit"
           >
             Đăng kí
           </Button>
         </div>
       </div>
-    </>
+      </form>
   );
 }

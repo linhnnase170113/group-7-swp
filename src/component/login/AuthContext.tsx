@@ -1,5 +1,7 @@
 import { createUserApi, getUserBackendApi } from "@/api/UserApi";
 import { auth, ggProvider } from "@/config/firebase";
+import { setOpen } from "@/feature/Alert";
+import { useAppDispatch } from "@/feature/Hooks";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -11,81 +13,93 @@ import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 const userAction = {
   loginGoogle: () => {},
-  registerFirebase: ({ email, password }: any) => {},
-  login: ({ email, password }: any) => {},
+  registerFirebase: (email: any, password: any) => {},
+  login: (email: any, password: any) => {},
   logout: () => {},
-  createUser: ( address : any, userName: any, phoneNumber: any ) => {},
-  user : null
+  createUser: (address: any, userName: any, phoneNumber: any) => {},
+  user: null,
 };
 export const UserContext = createContext(userAction);
 
 export default function AuthProvider({ children }: any) {
-  const router = useRouter()
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [currentUser, setCurrentUser] = useState<any>(null);
-  const [userFirebase, setUserFirebase] = useState<any>()
-  const [userBackend, setUserbackend] = useState<any>()
   const loginGoogle = async () => {
     try {
       const response = await signInWithPopup(auth, ggProvider);
-      router.push("/")
-
-    } catch (errors) {
-      return errors;
+      router.push("/customer");
+    } catch (error: any) {
+      return error.message;
     }
   };
-  const login = async ( email : any, password : any) => {
+  const login = async (email: any, password: any) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      router.push("/")
-    } catch (errors) {
-      return errors.message;
+      router.push("/customer");
+    } catch (error: any) {
+      return error.message;
     }
   };
   const logout = async () => {
     try {
       const response = await signOut(auth);
-      router.push("/")
-    } catch (errors) {
-      return errors;
+      router.push("/customer");
+    } catch (error: any) {
+      return error.message;
     }
   };
-  const registerFirebase = async ( email : any, password : any) => {
+  const registerFirebase = async (email: any, password: any) => {
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      router.push("/")
-    } catch (errors) {
-      return errors;
+      router.push("/information");
+    } catch (error: any) {
+      return error.message;
     }
   };
-  const createUser = async ( address: any , userName: any , phoneNumber : any ) => {
-    const response = await createUserApi(auth.currentUser?.email, phoneNumber, address, auth.currentUser?.uid, userName)
+  const createUser = async (address: any, userName: any, phoneNumber: any) => {
+    const response = await createUserApi(
+      auth.currentUser?.email,
+      phoneNumber,
+      address,
+      auth.currentUser?.uid,
+      userName
+    );
     if (response) {
-      setCurrentUser(auth.currentUser)
-      router.push("/")
+      setCurrentUser(auth.currentUser);
+      router.push("/customer");
     } else {
-
     }
-  }
-  const user = currentUser
+  };
+  const getUserBackend = async (userUid: any) => {
+    const userBackend = await getUserBackendApi(userUid);
+    if (userBackend !== null) {
+      dispatch(
+        setOpen({
+          open: true,
+          message: "Login success",
+          severity: "success",
+        })
+      );
+      setCurrentUser(auth.currentUser);
+    } else {
+      router.push("/information");
+    }
+  };
+  const user = currentUser;
   useEffect(() => {
-    console.log(currentUser)
+    console.log(currentUser);
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-     if (currentUser !== null) {
-      const getUserBackend = async (userUid:any) => {
-        const userBackend = await getUserBackendApi(userUid)
-        userBackend !== null ? setCurrentUser(auth.currentUser) : router.push("/information")
-        // router.push("/admin")
-        console.log(userBackend)
+      if (currentUser !== null) {
+        getUserBackend(currentUser.uid);
+      } else {
+        setCurrentUser(null);
+        router.push("/customer");
       }
-      getUserBackend(currentUser.uid)
-     } else {
-      setCurrentUser(null)
-      router.push("/")
-     }
     });
     return () => {
       unSubscribe();

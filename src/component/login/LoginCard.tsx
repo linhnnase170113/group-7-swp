@@ -21,7 +21,7 @@ export default function LoginCard({ setSign }: any) {
   const router = useRouter();
   const dispatch = useAppDispatch()
   const { register, handleSubmit, formState: { errors }, } = useForm()
-  const { loginGoogle, login, logout, registerFirebase } = useContext(UserContext)
+  const { loginGoogle, login, } = useContext(UserContext)
   const onSubmit = (data : any) => {
     const errors = login(data.email, data.password)
     if (errors !== undefined) {
@@ -35,7 +35,6 @@ export default function LoginCard({ setSign }: any) {
     }
   }
   return (
-    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <OutlinedInput
           className="input-login"
@@ -122,7 +121,6 @@ export default function LoginCard({ setSign }: any) {
           </div>
         </div>
       </form>
-    </>
   );
 }
 

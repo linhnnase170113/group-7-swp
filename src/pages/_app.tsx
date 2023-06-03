@@ -12,8 +12,8 @@ function MyApp({ Component, pageProps }: any) {
   return (
     
     // 2. Use at the root of your app
-      <AuthProvider>
     <Provider store={store}>
+      <AuthProvider>
       <NextSeo
         title="TiemHommie"
         description="Decoration and Gift"
@@ -30,8 +30,8 @@ function MyApp({ Component, pageProps }: any) {
         <Component {...pageProps} />
         </AlertPopup>
     </ThemeProvider>
-    </Provider>
       </AuthProvider>
+    </Provider>
   );
 }
 
