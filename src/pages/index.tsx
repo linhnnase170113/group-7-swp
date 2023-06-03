@@ -4,6 +4,10 @@ import { CardMedia, CircularProgress, Dialog } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 export default function Home() {
+  const router = useRouter()
+  useEffect(() => {
+    router.push("/customer")
+  }, [])
   return (
     <>
       <CardMedia
