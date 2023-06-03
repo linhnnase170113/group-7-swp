@@ -102,14 +102,14 @@ export default function ProductTable({ productList, categoryList }: any) {
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Image</TableCell>
-            <TableCell align="right">Edit</TableCell>
+            <TableCell sx={{ width: '150px', fontWeight: "700" }}>Name</TableCell>
+            <TableCell sx={{ width: '70px', fontWeight: "700"}}>Price</TableCell>
+            <TableCell sx={{ width: '50px', fontWeight: "700" }}>Quantity</TableCell>
+            <TableCell sx={{ width: '100px', fontWeight: "700" }}>Category</TableCell>
+            <TableCell sx={{ width: '600px', fontWeight: "700" }}>Description</TableCell>
+            <TableCell sx={{ width: '100px', fontWeight: "700" }}>Status</TableCell>
+            <TableCell sx={{ width: '100px', fontWeight: "700" }}>Image</TableCell>
+            <TableCell align="right" sx={{ width: '50px', fontWeight: "700" }}>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -136,7 +136,7 @@ export default function ProductTable({ productList, categoryList }: any) {
                 <TableCell>{row.productName}</TableCell>
                 <TableCell>{row.price}</TableCell>
                 <TableCell>{row.quantity}</TableCell>
-                <TableCell>{categoryList.filter((category : any) => category.categoryId === row.categoryId) }</TableCell>
+                <TableCell>{categoryList.find((category : any) => category.categoryId === row.categoryId).categoryName}</TableCell>
                 <TableCell align="justify">{row.description}</TableCell>
                 <TableCell align="justify">{row.status}</TableCell>
                 <TableCell>
