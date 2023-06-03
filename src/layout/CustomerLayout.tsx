@@ -23,11 +23,11 @@ export default function UserLayout({ children } : any) {
         <title>{setup.name}</title>
       </Head>
       <UserNavigation categoryList={categoryList}/>
-      <Container maxWidth="lg" sx={{
+      {/* <Container maxWidth="lg" sx={{
         marginTop: router.asPath !== "/customer" ? "11rem": "0rem",
         marginBottom: "5rem",
           position: "relative"
-      }}>{children}</Container>
+      }}>{children}</Container> */}
       <Footer/>
     </div>
   );

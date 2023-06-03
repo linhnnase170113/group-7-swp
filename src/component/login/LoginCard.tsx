@@ -14,9 +14,12 @@ import { setup } from "@/config/setup";
 import { useRouter } from "next/router";
 import { UserContext } from "./AuthContext";
 import { useForm } from "react-hook-form";
+import { useAppDispatch } from "@/feature/Hooks";
+import { setOpen } from "@/feature/Alert";
 
 export default function LoginCard({ setSign }: any) {
   const router = useRouter();
+  const dispatch = useAppDispatch()
   const { register, handleSubmit, formState: { errors }, } = useForm()
   const { loginGoogle, login, logout, registerFirebase } = useContext(UserContext)
   const onSubmit = (data : any) => {
@@ -50,9 +53,6 @@ export default function LoginCard({ setSign }: any) {
         <OutlinedInput
           className="input-login"
           error={errors.password !== undefined}
-          helperText={
-            errors.password !== undefined ? "bắt buộc" : ""
-          }
           startAdornment={
             <InputAdornment position="start">
               <LockPersonIcon />
@@ -125,11 +125,5 @@ export default function LoginCard({ setSign }: any) {
     </>
   );
 }
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}
 
-function setOpen(arg0: { open: boolean; message: string; severity: string; }): any {
-  throw new Error("Function not implemented.");
-}
 
