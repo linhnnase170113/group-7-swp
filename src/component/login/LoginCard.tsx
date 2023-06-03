@@ -4,97 +4,132 @@ import {
   InputAdornment,
   OutlinedInput,
   Typography,
+  TextField
 } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
 import GoogleIcon from "@mui/icons-material/Google";
 import { setup } from "@/config/setup";
 import { useRouter } from "next/router";
 import { UserContext } from "./AuthContext";
+import { useForm } from "react-hook-form";
 
 export default function LoginCard({ setSign }: any) {
   const router = useRouter();
-  const { loginGoogle, login, logout, register } = useContext(UserContext)
+  const { register, handleSubmit, formState: { errors }, } = useForm()
+  const { loginGoogle, login, logout, registerFirebase } = useContext(UserContext)
+  const onSubmit = (data : any) => {
+    const errors = login(data.email, data.password)
+    if (errors !== undefined) {
+      dispatch(
+        setOpen({
+          open: true,
+          message: "Wrong email or password",
+          severity: "error",
+        })
+      );
+    }
+  }
   return (
     <>
-      <OutlinedInput
-        className="input-login"
-        startAdornment={
-          <InputAdornment position="start">
-            <EmailIcon />
-          </InputAdornment>
-        }
-        onChange={(e) => {}}
-      />
-      <br />
-      <OutlinedInput
-        className="input-login"
-        startAdornment={
-          <InputAdornment position="start">
-            <LockPersonIcon />
-          </InputAdornment>
-        }
-        type="password"
-        onChange={(e) => {}}
-      />
-      <div
-        style={{
-          justifyContent: "space-between",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Checkbox />
-          <Typography>Remember me</Typography>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <OutlinedInput
+          className="input-login"
+          error={errors.email !== undefined}
+          startAdornment={
+            <InputAdornment position="start">
+              <EmailIcon />
+            </InputAdornment>
+          }
+          {... register("email", {
+            required: true
+          })}
+        />
+        <br />
+        <OutlinedInput
+          className="input-login"
+          error={errors.password !== undefined}
+          helperText={
+            errors.password !== undefined ? "bắt buộc" : ""
+          }
+          startAdornment={
+            <InputAdornment position="start">
+              <LockPersonIcon />
+            </InputAdornment>
+          }
+          {... register("password", {
+            required: true
+          })}
+          type="password"
+        />
+        <div
+          style={{
+            justifyContent: "space-between",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Checkbox />
+            <Typography>Remember me</Typography>
+          </div>
+          <Typography>Forgot password</Typography>
         </div>
-        <Typography>Forgot password</Typography>
-      </div>
-      <Button
-        variant="contained"
-        style={{ backgroundColor: "#F5A524" }}
-        fullWidth
-        onClick={() => {
-          loginGoogle()
-        }}
-      >
-        <GoogleIcon style={{ fontSize: "1.5rem", marginRight: "1rem" }} />
-        Login with google
-      </Button>
+        <Button
+          variant="contained"
+          style={{ backgroundColor: "#F5A524" }}
+          fullWidth
+          onClick={() => {
+            loginGoogle()
+          }}
+        >
+          <GoogleIcon style={{ fontSize: "1.5rem", marginRight: "1rem" }} />
+          Đăng nhập bằng google
+        </Button>
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
           <Button
-          sx={{
-            color: "black"
-          }}
+            sx={{
+              color: "black"
+            }}
             onClick={() => {
               router.push("/");
             }}
           >
-            back to home
+            quay về
           </Button>
           <div>
             <Button
-            sx={{
-              color: "black"
-            }}
+              sx={{
+                color: "black"
+              }}
               onClick={() => {
                 setSign(true);
               }}
             >
-              Register
+              Đăng kí
             </Button>
             <Button
+            type="submit"
               variant="contained"
               sx={{
                 backgroundColor: setup.navigationColor,
                 color: "black"
               }}
             >
-              Login
+              Đăng nhập
             </Button>
           </div>
         </div>
+      </form>
     </>
   );
 }
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}
+
+function setOpen(arg0: { open: boolean; message: string; severity: string; }): any {
+  throw new Error("Function not implemented.");
+}
+

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 const userAction = {
   loginGoogle: () => {},
-  register: ({ email, password }: any) => {},
+  registerFirebase: ({ email, password }: any) => {},
   login: ({ email, password }: any) => {},
   logout: () => {},
   createUser: ( address : any, userName: any, phoneNumber: any ) => {},
@@ -33,12 +33,12 @@ export default function AuthProvider({ children }: any) {
       return errors;
     }
   };
-  const login = async ({ email, password }: any) => {
+  const login = async ( email : any, password : any) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       router.push("/")
     } catch (errors) {
-      return errors;
+      return errors.message;
     }
   };
   const logout = async () => {
@@ -49,7 +49,7 @@ export default function AuthProvider({ children }: any) {
       return errors;
     }
   };
-  const register = async ({ email, password }: any) => {
+  const registerFirebase = async ( email : any, password : any) => {
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -93,7 +93,7 @@ export default function AuthProvider({ children }: any) {
   }, [currentUser]);
   return (
     <UserContext.Provider
-      value={{ loginGoogle, login, logout, register, createUser, user }}
+      value={{ loginGoogle, login, logout, registerFirebase, createUser, user }}
     >
       {children}
     </UserContext.Provider>

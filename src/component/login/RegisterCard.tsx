@@ -26,13 +26,13 @@ export default function RegisterCard({ setSign }: any) {
       />
       <Button
         variant="contained"
-        style={{ backgroundColor: "#F5A524" }}
+        style={{ backgroundColor: "#F5A524", marginTop: ".8rem" }}
         onClick={() => {}}
         fullWidth
         className="login-button"
       >
         <GoogleIcon style={{ fontSize: "1.5rem", marginRight: "1rem" }} />
-        Login with google
+        Đăng nhập bằng google
       </Button>
       <div
         style={{
@@ -49,7 +49,7 @@ export default function RegisterCard({ setSign }: any) {
             router.push("/");
           }}
         >
-          back to home
+          quay về
         </Button>
         <div>
           <Button
@@ -60,7 +60,7 @@ export default function RegisterCard({ setSign }: any) {
               setSign(false);
             }}
           >
-            Login
+            Đăng nhập
           </Button>
           <Button
             variant="contained"
@@ -68,7 +68,7 @@ export default function RegisterCard({ setSign }: any) {
               color: "black"
             }}
           >
-            Register
+            Đăng kí
           </Button>
         </div>
       </div>
