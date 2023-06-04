@@ -40,7 +40,7 @@ export default function ProductUploadForm({ categoryList }: any) {
     setOpenPopup(false)
     setImage(null)
     setCreateObjectURL(null)
-    setcategorySelected(null)
+    setcategorySelected(0)
   }
 
   const uploadToClient = (event: any) => {
