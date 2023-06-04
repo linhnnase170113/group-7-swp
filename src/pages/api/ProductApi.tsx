@@ -77,6 +77,40 @@ export const createProductApi = async (
     return true;
   }
 };
+export const updateProductApi = async (
+  productName: any,
+  categoryId: any,
+  quantity: any,
+  description: any,
+  image: any,
+  price: any,
+  productId: any
+) => {
+  const response = await fetch(
+    "http://localhost:8080/api/product/updateProduct",
+    {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        categoryId: categoryId,
+        dateCreate: "",
+        dateUpdate: "",
+        description: description,
+        image: image,
+        price: price,
+        productId: productId,
+        productName: productName,
+        quantity: quantity,
+        status: "bán chạy",
+      }),
+    }
+  );
+  if (response.ok) {
+    return true;
+  }
+};
 export const deleteProductApi = async (productIdList: any) => {
   const result = productIdList
     .map((productId: any) => `productIdList=${productId}&`)

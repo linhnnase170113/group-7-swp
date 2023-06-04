@@ -193,7 +193,6 @@ export default function ProductUploadForm({ categoryList }: any) {
                     Upload Image
                   </Button>
                 </label>
-                <img src={createObjectURL} />
               </Grid>
               <Grid item xs={9}></Grid>
               <Grid item xs={3}>

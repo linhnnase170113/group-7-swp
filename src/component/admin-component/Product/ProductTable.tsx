@@ -25,6 +25,7 @@ import { deleteProductApi } from "@/pages/api/ProductApi";
 import { useAppDispatch } from "@/feature/Hooks";
 import { setOpen } from "@/feature/Alert";
 import ConfirmPopup from "@/component/ConfirmPopup";
+import ProductEditForm from "./ProductEditForm";
 export default function ProductTable({ productList, categoryList }: any) {
   const [searchType, setSearchType] = useState<any>(0);
   const [selectProducts, setSelectProducts] = useState<any>([]);
@@ -193,15 +194,7 @@ export default function ProductTable({ productList, categoryList }: any) {
                   />
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton aria-label="update" onClick={() => {}}>
-                    <EditIcon
-                      style={{
-                        width: 30,
-                        height: 30,
-                      }}
-                      color="success"
-                    />
-                  </IconButton>
+                  <ProductEditForm product={row} categoryList={categoryList}/>
                 </TableCell>
               </TableRow>
             ))}
