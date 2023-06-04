@@ -12,18 +12,19 @@ export default function AdminLayout({ children }: any) {
         <title>{setup.name}</title>
       </Head>
       <div style={{
-        display: "flex"
+        display: "grid",
+        gridTemplateColumns: "20rem auto"
       }}>
         <div style={{
           width: "20rem",
-          height: "fit-content"
+          height: "100vh"
         }}>
         <NavigationLeft />
         </div>
         <div>
           <AdminNavigationTop />
           <Container
-            maxWidth="lg"
+            maxWidth="xl"
             sx={{
               marginTop: "6rem",
             }}

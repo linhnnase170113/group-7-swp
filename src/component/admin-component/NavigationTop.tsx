@@ -46,7 +46,6 @@ function AdminNavigationTop() {
           backgroundColor: "inherit",
         },
       }}>
-      <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           </Box>
@@ -103,7 +102,6 @@ function AdminNavigationTop() {
             </Menu>
           </Box>
         </Toolbar>
-      </Container>
     </AppBar>
   );
 }
