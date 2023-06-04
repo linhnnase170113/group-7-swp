@@ -1,4 +1,4 @@
-import { createUserApi, getUserBackendApi } from "@/api/UserApi";
+import { createUserApi, getUserBackendApi } from "@/pages/api/UserApi";
 import { auth, ggProvider } from "@/config/firebase";
 import { setOpen } from "@/feature/Alert";
 import { useAppDispatch } from "@/feature/Hooks";

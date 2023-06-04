@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 export default function ImageUploadForm(props : any) {
   const [image, setImage] = useState<any>(null);
   const [createObjectURL, setCreateObjectURL] = useState<any>(null);

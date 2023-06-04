@@ -1,4 +1,4 @@
-import { getCategoryListApi } from "@/api/CategoryApi";
+import { getCategoryListApi } from "@/pages/api/CategoryApi";
 import Footer from "@/component/customer-component/Footer";
 import UserNavigation from "@/component/customer-component/Navigation";
 import { setup } from "@/config/setup";

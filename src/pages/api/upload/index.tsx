@@ -1,8 +1,5 @@
 import { IncomingForm } from 'formidable'
-import { promises as fs } from 'fs'
-
 var mv = require('mv');
-
 
 export const config = {
     api: {
@@ -20,7 +17,7 @@ export default async (req : any, res : any) => {
             console.log(fields, files)
             console.log(files.file.filepath)
             var oldPath = files.file.filepath;
-            var newPath = `./public/assets/images/${files.file.originalFilename}`;
+            var newPath = `public/assets/images/${files.file.originalFilename}`;
             mv(oldPath, newPath, function(err : any) {
             });
             res.status(200).json({ fields, files })

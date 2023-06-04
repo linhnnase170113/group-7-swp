@@ -1,4 +1,4 @@
-import { getProductByProductIdApi } from "@/api/ProductApi";
+import { getProductByProductIdApi } from "@/pages/api/ProductApi";
 import Loading from "@/component/Loading";
 import DetailsCard from "@/component/customer-component/Details/DetailsCard";
 import { useAppDispatch } from "@/feature/Hooks";

@@ -1,4 +1,4 @@
-import { getCategoryAndProductApi } from "@/api/CategoryApi";
+import { getCategoryAndProductApi } from "@/pages/api/CategoryApi";
 import Loading from "@/component/Loading";
 import Banner from "@/component/customer-component/home/Banner";
 import HomeCategoryList from "@/component/customer-component/home/HomeCategoryList";

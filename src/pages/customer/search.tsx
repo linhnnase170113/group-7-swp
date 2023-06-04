@@ -4,7 +4,7 @@ import { Grid } from "@mui/material"
 import { useRouter } from 'next/router'
 import Filter from '@/component/customer-component/search/Filter';
 import SearchList from '@/component/customer-component/search/SearchList';
-import { getProductListApi, getProductListByCategoryApi, getProductListByNameApi } from '@/api/ProductApi';
+import { getProductListApi, getProductListByCategoryApi, getProductListByNameApi } from '@/pages/api/ProductApi';
 import { block } from '@/config/setup';
 import Loading from '@/component/Loading';
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import ProductTable from "@/component/admin-component/Product/ProductTable";
 import AdminLayout from "@/layout/AdminLayout";
 
-import { getProductListApi } from "@/api/ProductApi";
+import { getProductListApi } from "@/pages/api/ProductApi";
 import Loading from "@/component/Loading";
-import { getCategoryListApi } from "@/api/CategoryApi";
+import { getCategoryListApi } from "@/pages/api/CategoryApi";
 export default function Product() {
     const [productList, setProductList] = useState(null)
     const [categoryList, setCategoryList] = useState(null)
