@@ -7,6 +7,9 @@ const theme = createTheme({
     primary: {
       main: '#feAFA2', // Mã màu chủ đạo mới
     },
+    secondary: {
+      main: "rgb(25, 118, 210)"
+    }
   },
   typography: {
     fontFamily: 'Montserrat',

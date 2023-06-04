@@ -36,3 +36,26 @@ export const getProductByProductIdApi =async (productId: any) => {
         return null
     }
 }
+export const createProductApi =async (productName: any, categoryId: any, quantity: any, description: any, image: any, price: any) => {
+    const response = await fetch("http://localhost:8080/api/product/createProduct", {
+        method: "POST",
+        headers: {
+             'content-type': 'application/json' ,
+        },
+        body: JSON.stringify({
+            "categoryId": categoryId,
+            "dateCreate": "",
+            "dateUpdate": "",
+            "description": description,
+            "image": image,
+            "price": price,
+            "productId": 0,
+            "productName": productName,
+            "quantity": quantity,
+            "status": "mới"
+        })
+    })
+    if (response.ok) {
+        return true
+    }
+}

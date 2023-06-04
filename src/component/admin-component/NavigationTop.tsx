@@ -54,7 +54,7 @@ function AdminNavigationTop() {
               <IconButton size='large' >
                 <InfoOutlinedIcon sx={{
                   transform: "scale(1.3)",
-                  color: "#0d6efd"
+                  color: "rgb(25, 118, 210)"
                 }}/>
               </IconButton>
             </Tooltip>
@@ -62,7 +62,7 @@ function AdminNavigationTop() {
               <IconButton  size='large'>
                 <NotificationsOutlinedIcon sx={{
                   transform: "scale(1.3)",
-                  color: "#0d6efd"
+                  color: "rgb(25, 118, 210)"
                 }} />
               </IconButton>
             </Tooltip>
@@ -70,7 +70,7 @@ function AdminNavigationTop() {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} size='large'>
                 <AccountCircleOutlinedIcon sx={{
                   transform: "scale(1.3)",
-                  color: "#0d6efd"
+                  color: "rgb(25, 118, 210)"
                 }}/>
               </IconButton>
             </Tooltip>

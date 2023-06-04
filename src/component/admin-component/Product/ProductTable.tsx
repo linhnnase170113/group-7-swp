@@ -20,8 +20,7 @@ import {
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import ImageUploadForm from "@/component/ImageUploadForm";
+import ProductUploadForm from "@/component/ProductUploadForm";
 export default function ProductTable({ productList, categoryList }: any) {
   const [searchType, setSearchType] = useState<any>(0);
   const [selectProducts, setSelectProducts] = useState<any>([]);
@@ -58,8 +57,9 @@ export default function ProductTable({ productList, categoryList }: any) {
             display: "flex",
           }}
         >
-          <TextField size="small" variant="filled" />
+          <TextField size="small" variant="filled" color="secondary"/>
           <Select
+          color="secondary"
             value={searchType}
             onChange={(e) => setSearchType(e.target.value)}
             inputProps={{ "aria-label": "Without label" }}
@@ -88,16 +88,7 @@ export default function ProductTable({ productList, categoryList }: any) {
               color="error"
             />
           </Button>
-          {/* <Button aria-label="add" onClick={() => {}}>
-            <AddBoxIcon
-              style={{
-                width: 30,
-                height: 30,
-              }}
-              color="success"
-            />
-          </Button> */}
-          <ImageUploadForm/>
+          <ProductUploadForm categoryList={categoryList}/>
         </div>
       </Toolbar>
       <Table sx={{ minWidth: 700 }} aria-label="simple table">
@@ -105,7 +96,7 @@ export default function ProductTable({ productList, categoryList }: any) {
           <TableRow>
             <TableCell></TableCell>
             <TableCell sx={{ width: '150px', fontWeight: "700" }}>Name</TableCell>
-            <TableCell sx={{ width: '70px', fontWeight: "700"}}>Price</TableCell>
+            <TableCell sx={{ width: '100px', fontWeight: "700"}}>Price (VND)</TableCell>
             <TableCell sx={{ width: '50px', fontWeight: "700" }}>Quantity</TableCell>
             <TableCell sx={{ width: '100px', fontWeight: "700" }}>Category</TableCell>
             <TableCell sx={{ width: '600px', fontWeight: "700" }}>Description</TableCell>

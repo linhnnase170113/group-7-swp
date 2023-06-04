@@ -1,6 +1,6 @@
 import { getProductByProductIdApi } from "@/pages/api/ProductApi";
 import Loading from "@/component/Loading";
-import DetailsCard from "@/component/customer-component/Details/DetailsCard";
+import DetailsCard from "@/component/customer-component/details/DetailsCard";
 import { useAppDispatch } from "@/feature/Hooks";
 import UserLayout from "@/layout/CustomerLayout";
 import { Paper, CardMedia, Grid, Typography, Button } from "@mui/material";

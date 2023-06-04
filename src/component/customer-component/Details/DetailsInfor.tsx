@@ -1,7 +1,7 @@
 import React from 'react'
 import { setup } from "@/config/setup";
 import { setOpen } from "@/feature/Alert";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, TextField } from "@mui/material";
 import { useAppDispatch } from '@/feature/Hooks';
 export default function DetailsInfor({product} : any) {
     const dispatch = useAppDispatch()
@@ -28,9 +28,8 @@ export default function DetailsInfor({product} : any) {
             display: "flex",
             alignItems: "center"
           }}>
-            <input type="number" defaultValue={1} style={{
+            <TextField type="number" size='small' color="success" defaultValue={1} style={{
               width: "4rem",
-              height: "2rem",
             }}/>
             <Button variant="contained" 
               disabled= {product.quantity > 0 ? false : true}
