@@ -1,9 +1,7 @@
 import { getProductByProductIdApi } from "@/pages/api/ProductApi";
 import Loading from "@/component/Loading";
 import DetailsCard from "@/component/customer-component/details/DetailsCard";
-import { useAppDispatch } from "@/feature/Hooks";
 import UserLayout from "@/layout/CustomerLayout";
-import { Paper, CardMedia, Grid, Typography, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 export default function Details() {
