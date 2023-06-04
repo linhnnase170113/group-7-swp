@@ -5,9 +5,11 @@ import AdminLayout from "@/layout/AdminLayout";
 import { getProductListApi } from "@/pages/api/ProductApi";
 import Loading from "@/component/Loading";
 import { getCategoryListApi } from "@/pages/api/CategoryApi";
+import { useAppSelector } from "@/feature/Hooks";
 export default function Product() {
     const [productList, setProductList] = useState(null)
     const [categoryList, setCategoryList] = useState(null)
+    const alert = useAppSelector(state => state.alert)
     useEffect(() => {
         const getProductList =async () => {
             const productList = await getProductListApi()
@@ -19,7 +21,7 @@ export default function Product() {
         }
         getProductList()
         getCategoryList()
-    }, [])
+    }, [alert])
   return (
     <AdminLayout>
       {productList !== null && categoryList !== null ? <ProductTable productList={productList} categoryList={categoryList}/> : <Loading/>}
