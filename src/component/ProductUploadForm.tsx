@@ -37,7 +37,10 @@ export default function ProductUploadForm({ categoryList }: any) {
       console.log(createObjectURL)
     }
     createProduct()
-
+    setOpenPopup(false)
+    setImage(null)
+    setCreateObjectURL(null)
+    setcategorySelected(null)
   }
 
   const uploadToClient = (event: any) => {
