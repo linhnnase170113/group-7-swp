@@ -30,12 +30,13 @@ function AdminNavigationTop() {
   };
 
   return (
-    <AppBar position="static"
+    <AppBar position="fixed"
       sx={{
         backgroundColor: "white",
         color: setup.color,
         boxShadow: "none",
         height: "80px",
+        zIndex: "1",
         "& .MuiButtonBase-root": {
           boxShadow: "none",
           margin: "0 1rem",

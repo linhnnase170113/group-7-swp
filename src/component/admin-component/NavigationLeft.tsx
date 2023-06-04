@@ -15,12 +15,13 @@ export default function NavigationLeft() {
   return (
     <Paper
       sx={{
-        width: "calc(100%/12*1.7)",
+        width: "20rem",
         height: "100vh",
-        position: "fixed",
         backgroundColor: "#0f1a34",
         color: setup.color,
+        position: "fixed",
         boxShadow: "none",
+        zIndex: "3",
       }}
     >
       <div style={{

@@ -65,11 +65,6 @@ export default function ProductTable({ productList, categoryList }: any) {
   return (
     <TableContainer
       component={Paper}
-      sx={{
-        "& .MuiContainer-root": {
-          maxWidth: "5rem",
-        },
-      }}
     >
       <Toolbar
         style={{
@@ -151,8 +146,10 @@ export default function ProductTable({ productList, categoryList }: any) {
           {productList
             .slice(0 + page * rowsPerPage, (page + 1) * rowsPerPage)
             .map((row: any) => (
-              <TableRow key={row.productId}>
-                <TableCell>
+              <TableRow key={row.productId} sx={{
+                overFlow: "hidden"
+              }}>
+                <TableCell padding="checkbox">
                   <Checkbox
                     color="error"
                     onChange={(e) => {
@@ -178,7 +175,11 @@ export default function ProductTable({ productList, categoryList }: any) {
                     ).categoryName
                   }
                 </TableCell>
-                <TableCell align="justify">{row.description}</TableCell>
+                <TableCell align="justify" size="small" sx={{
+                  height: "2rem",
+                  overflow: "hidden", /* Ẩn phần dư thừa */
+                  textOverflow: "ellipsis",
+                }}>{row.description}</TableCell>
                 <TableCell align="justify">{row.status}</TableCell>
                 <TableCell>
                   {/* <Link href={"../assets/images/" + row.image} target="_blank">

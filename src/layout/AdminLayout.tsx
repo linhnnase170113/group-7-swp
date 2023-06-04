@@ -11,22 +11,27 @@ export default function AdminLayout({ children }: any) {
       <Head>
         <title>{setup.name}</title>
       </Head>
-      <Grid container spacing={0}>
-        <Grid item xs={1.7}>
-          <NavigationLeft />
-        </Grid>
-        <Grid item xs={10.3}>
+      <div style={{
+        display: "flex"
+      }}>
+        <div style={{
+          width: "20rem",
+          height: "fit-content"
+        }}>
+        <NavigationLeft />
+        </div>
+        <div>
           <AdminNavigationTop />
           <Container
-            maxWidth="xl"
+            maxWidth="lg"
             sx={{
-              marginTop: "1rem",
+              marginTop: "6rem",
             }}
           >
             {children}
           </Container>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </div>
   );
 }
