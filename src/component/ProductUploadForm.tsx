@@ -34,7 +34,7 @@ export default function ProductUploadForm({ categoryList }: any) {
       //     severity: "success",
       //   }))
       // }
-      console.log(image.name)
+      console.log(image)
     }
     createProduct()
 
