@@ -130,7 +130,7 @@ export default function ProductUploadForm({ categoryList }: any) {
                     <em>Select category</em>
                   </MenuItem>
                   {categoryList.map((category: any) => (
-                    <MenuItem value={category.categoryId}>
+                    <MenuItem value={category.categoryId} key={category.categoryId}>
                       {category.categoryName}
                     </MenuItem>
                     // <MenuItem value={2}>Name</MenuItem>
