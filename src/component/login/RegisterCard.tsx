@@ -1,5 +1,5 @@
 import { Typography, OutlinedInput, Button, TextField, InputAdornment } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -10,18 +10,19 @@ import { useAppDispatch } from "@/feature/Hooks";
 import { setOpen } from "@/feature/Alert";
 export default function RegisterCard({ setSign }: any) {
   const { register, handleSubmit, formState: { errors }, } = useForm()
+  const [error, setError] = useState<any>(null)
   const dispatch = useAppDispatch()
   const { registerFirebase, loginGoogle } = useContext(UserContext)
   const router = useRouter();
-  const onSubmit = (data : any) => {
-    const error = registerFirebase(data.email, data.password)
-    error !== undefined ? dispatch(
-      setOpen({
-        open: true,
-        message: "Register success",
-        severity: "success",
-      })
-    ) : null
+  const onSubmit = async (data : any) => {
+      const error : any = await registerFirebase(data.email, data.password)
+      error === undefined ? dispatch(
+        setOpen({
+          open: true,
+          message: "Register success",
+          severity: "success",
+        })
+      ) : setError(error)
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -67,6 +68,7 @@ export default function RegisterCard({ setSign }: any) {
           marginBottom: "0.5rem",
         }}
       />
+      {error !== null ? <Typography color="error">{error}</Typography> : null}
       <Button
         variant="contained"
         style={{ backgroundColor: "#F5A524", marginTop: ".8rem" }}
