@@ -21,6 +21,7 @@ import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ProductUploadForm from "@/component/ProductUploadForm";
+import { deleteProductApi } from "@/pages/api/ProductApi";
 export default function ProductTable({ productList, categoryList }: any) {
   const [searchType, setSearchType] = useState<any>(0);
   const [selectProducts, setSelectProducts] = useState<any>([]);
@@ -74,7 +75,9 @@ export default function ProductTable({ productList, categoryList }: any) {
           </Select>
         </div>
         <div>
-          <Button aria-label="delete" onClick={() => {}}>
+          <Button aria-label="delete" onClick={() => {
+            deleteProductApi()
+          }}>
             <Typography color="error">
               {selectProducts.length > 0
                 ? `${selectProducts.length} selected`

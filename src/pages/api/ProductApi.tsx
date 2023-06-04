@@ -59,3 +59,9 @@ export const createProductApi =async (productName: any, categoryId: any, quantit
         return true
     }
 }
+export const deleteProductApi =async () => {
+    const response = await fetch("http://localhost:8080/api/product/deleteProduct?productIdList=65&productIdList=66&")
+    if (response.ok) {
+        return true
+    }
+}
