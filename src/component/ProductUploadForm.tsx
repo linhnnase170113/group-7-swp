@@ -25,15 +25,15 @@ export default function ProductUploadForm({ categoryList }: any) {
 
   const onSubmit = (data : any) => {
     const createProduct = async () => {
-      // const responseImg = await uploadToServer()
-      // const response = await createProductApi(data.productName, categorySelected, data.quantity, data.description, image.name, data.price)
-      // if (responseImg && response) {
-      //   dispatch(setOpen({
-      //     open: true,
-      //     message: "Adding success",
-      //     severity: "success",
-      //   }))
-      // }
+      const responseImg = await uploadToServer()
+      const response = await createProductApi(data.productName, categorySelected, data.quantity, data.description, image.name, data.price)
+      if (responseImg && response) {
+        dispatch(setOpen({
+          open: true,
+          message: "Adding success",
+          severity: "success",
+        }))
+      }
       console.log(createObjectURL)
     }
     createProduct()
