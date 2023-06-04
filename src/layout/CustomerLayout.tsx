@@ -18,9 +18,7 @@ export default function UserLayout({ children } : any) {
     // console.log(router.asPath)
   },[])
   return (
-    <div style={{
-      position: "relative"
-    }}>
+    <div>
       <Head>
         <title>{setup.name}</title>
       </Head>
