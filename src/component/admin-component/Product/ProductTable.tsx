@@ -21,7 +21,7 @@ import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import UploadImage from "@/component/UploadImage";
+import ImageUploadForm from "@/component/ImageUploadForm";
 export default function ProductTable({ productList, categoryList }: any) {
   const [searchType, setSearchType] = useState<any>(0);
   const [selectProducts, setSelectProducts] = useState<any>([]);
@@ -97,7 +97,7 @@ export default function ProductTable({ productList, categoryList }: any) {
               color="success"
             />
           </Button> */}
-          <UploadImage/>
+          <ImageUploadForm/>
         </div>
       </Toolbar>
       <Table sx={{ minWidth: 700 }} aria-label="simple table">
