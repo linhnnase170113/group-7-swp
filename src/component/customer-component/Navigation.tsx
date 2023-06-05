@@ -43,6 +43,7 @@ export default function UserNavigation({ categoryList }: any) {
         position="fixed"
         sx={{
           paddingBottom: "0.5rem",
+          paddingTop: "0.5rem",
           color: setup.color,
           boxShadow: "none",
           "& .MuiButtonBase-root": {

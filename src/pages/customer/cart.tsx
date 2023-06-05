@@ -3,6 +3,7 @@ import { Paper, Typography, CardMedia, TextField, IconButton, Card, Button, Tool
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ClearSharpIcon from '@mui/icons-material/ClearSharp';
 import { CheckInView } from "@/checkInScreen";
+import ChangeQuatityButton from "@/component/customer-component/cart/ChangeQuatityButton";
 const cartItems = [{
     productName: "Chuong gio khung long xanh la",
     image: "/assets/images/5.jpg",
@@ -79,9 +80,9 @@ export default function Cart() {
                         </div>
                         <div style={{
                             paddingRight: "3rem",
-                            paddingTop: "0.5rem"
+                            paddingTop: "1rem"
                         }}>
-                            <TextField type="number" size="small" defaultValue={row.quantity} />
+                            <ChangeQuatityButton quantity={row.quantity}/>
                         </div>
                         <div>
                             <Typography variant="h6">total: {row.price * row.quantity} VND</Typography>
