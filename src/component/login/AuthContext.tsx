@@ -26,8 +26,8 @@ export default function AuthProvider({ children }: any) {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [currentUserBackend, setCurrentUserBackend] = useState<any>(null)
-  const userBackend = currentUserBackend
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const userBackend = currentUserBackend
   const user = currentUser;
   const loginGoogle = async () => {
     try {
@@ -94,14 +94,13 @@ export default function AuthProvider({ children }: any) {
           severity: "success",
         })
       );
-
       if (userBackend.userRole === 1) {
         router.push("/admin");
       } else {
         router.push("/customer");
       }
       setCurrentUser(auth.currentUser);
-      setCurrentUserBackend(userBackend)
+      setCurrentUserBackend(userBackend);
     } else {
       router.push("/information");
     }

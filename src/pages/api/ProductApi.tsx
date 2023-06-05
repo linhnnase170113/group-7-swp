@@ -2,7 +2,7 @@ export const getProductListByNameApi = async (productName: any) => {
   const response = await fetch(
     `http://localhost:8080/api/product/searchByName?productName=${productName}`
   );
-  if(response.ok) {
+  if(response.ok && productName !== "") {
     const productList: any = await response.json();
     return productList
   } else {

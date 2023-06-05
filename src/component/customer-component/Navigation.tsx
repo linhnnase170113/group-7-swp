@@ -23,8 +23,6 @@ export default function UserNavigation({ categoryList }: any) {
     { name: "about", url: "" },
     { name: "contact", url: "" },
   ];
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -165,10 +163,9 @@ export default function UserNavigation({ categoryList }: any) {
             }}
           >
             <Grid container spacing={0}>
-              <Grid item xs={2}>
-                <Button>
+              <Grid item xs={2.2}>
+                <Button fullWidth>
                   <WidgetsIcon sx={{
-                    marginRight: "5px"
                   }} />Danh mục
                 </Button>
               </Grid>
