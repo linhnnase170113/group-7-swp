@@ -109,9 +109,8 @@ export const updateProductApi = async (
 };
 export const deleteProductApi = async (productIdList: any) => {
   const result = productIdList
-    .map((productId: any) => `productIdList=${productId}&`)
+    .map((productId: any) => `productId=${productId}&`)
     .join("");
-
   const response = await fetch(
     `http://localhost:8080/api/product/deleteProduct?${result}`,
     {
