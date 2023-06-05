@@ -18,13 +18,17 @@ const userInit = {
   logout: () => {},
   createUser: (address: any, userName: any, phoneNumber: any) => {},
   user: null,
+  userBackend: null
 };
 export const UserContext = createContext(userInit);
 
 export default function AuthProvider({ children }: any) {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [currentUserBackend, setCurrentUserBackend] = useState<any>(null)
+  const userBackend = currentUserBackend
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const user = currentUser;
   const loginGoogle = async () => {
     try {
       const response = await signInWithPopup(auth, ggProvider);
@@ -97,18 +101,20 @@ export default function AuthProvider({ children }: any) {
         router.push("/customer");
       }
       setCurrentUser(auth.currentUser);
+      setCurrentUserBackend(userBackend)
     } else {
       router.push("/information");
     }
   };
-  const user = currentUser;
   useEffect(() => {
     console.log(currentUser);
+    console.log(currentUserBackend)
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser !== null) {
         getUserBackend(currentUser.uid);
       } else {
         setCurrentUser(null);
+        setCurrentUserBackend(null)
         router.push("/customer");
       }
     });
@@ -118,7 +124,7 @@ export default function AuthProvider({ children }: any) {
   }, [currentUser]);
   return (
     <UserContext.Provider
-      value={{ loginGoogle, login, logout, registerFirebase, createUser, user }}
+      value={{ loginGoogle, login, logout, registerFirebase, createUser, user, userBackend }}
     >
       {children}
     </UserContext.Provider>

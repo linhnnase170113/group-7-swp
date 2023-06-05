@@ -15,7 +15,6 @@ export const getProductListByCategoryApi = async (categoryId: any) => {
   );
   if (response.ok) {
     const productList: any = await response.json();
-    console.log(productList);
     return productList;
   } else {
     return null;
