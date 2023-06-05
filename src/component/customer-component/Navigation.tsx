@@ -4,19 +4,17 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { setup } from "../../config/setup";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Button, Container, Grid, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { UserContext } from "../login/AuthContext";
 import { useContext } from "react";
 import SearchBox from "./navigation/SearchBox";
-import { auth } from "@/config/firebase";
+import CartButton from "./cart/CartButton";
 export default function UserNavigation({ categoryList }: any) {
   const { logout, user } = useContext(UserContext)
   const settings = ['Profile', 'Logout'];
@@ -27,7 +25,6 @@ export default function UserNavigation({ categoryList }: any) {
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,7 +42,7 @@ export default function UserNavigation({ categoryList }: any) {
       <AppBar
         position="fixed"
         sx={{
-          padding: "1rem",
+          paddingBottom: "0.5rem",
           color: setup.color,
           boxShadow: "none",
           "& .MuiButtonBase-root": {
@@ -121,14 +118,7 @@ export default function UserNavigation({ categoryList }: any) {
                 </Button>
               ) : (
                 <>
-                  <IconButton className="navbar" color="inherit" sx={{
-                      margin: "0 1rem",
-                      transform: "scale(1.2)"
-                    }}>
-                    <Badge badgeContent={4} color="error">
-                      <ShoppingBagIcon />
-                    </Badge>
-                  </IconButton>
+                  <CartButton/>
                   <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, margin: "0 1rem",
                       transform: "scale(1.3)" }}>

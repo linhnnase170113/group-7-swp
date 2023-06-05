@@ -40,7 +40,6 @@ export default function HomeCategoryList({ categoryAndProduct }: any) {
           xem thêm<TrendingFlatIcon/>
         </Typography>
       </div>
-      <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={3}>
             <ProductCard
@@ -63,7 +62,6 @@ export default function HomeCategoryList({ categoryAndProduct }: any) {
             />
           </Grid>
         </Grid>
-      </Container>
     </div>
   );
 }

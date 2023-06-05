@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
-const userAction = {
+const userInit = {
   loginGoogle: () => {},
   registerFirebase: (email: any, password: any) => {},
   login: (email: any, password: any) => {},
@@ -19,7 +19,7 @@ const userAction = {
   createUser: (address: any, userName: any, phoneNumber: any) => {},
   user: null,
 };
-export const UserContext = createContext(userAction);
+export const UserContext = createContext(userInit);
 
 export default function AuthProvider({ children }: any) {
   const dispatch = useAppDispatch();
@@ -90,6 +90,7 @@ export default function AuthProvider({ children }: any) {
           severity: "success",
         })
       );
+
       if (userBackend.userRole === 1) {
         router.push("/admin");
       } else {

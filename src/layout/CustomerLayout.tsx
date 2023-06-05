@@ -25,9 +25,8 @@ export default function UserLayout({ children } : any) {
       <UserNavigation categoryList={categoryList}/>
       <Container maxWidth="lg" sx={{
         minHeight: "30rem",
-        marginTop: router.asPath !== "/customer" ? "11rem": "0rem",
+        marginTop: router.asPath !== "/customer" ? "10rem": "0rem",
         marginBottom: "5rem",
-          position: "relative"
       }}>{children}</Container>
       <Footer/>
     </div>

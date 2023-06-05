@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import { Container } from '@mui/material';
+import React, { useRef, useEffect, useState } from 'react';
 
 export const CheckInView = ({children} : any) => {
   const elementRef = useRef(null);
-
+  const [isVisible, setIsvisible] = useState<any>(false)
   useEffect(() => {
     const checkIfVisible = () => {
       const element : any = elementRef.current;
@@ -15,8 +16,8 @@ export const CheckInView = ({children} : any) => {
         rect.bottom <= window.innerHeight &&
         rect.right <= window.innerWidth
       );
-
-      console.log('Is visible:', isVisible);
+      setIsvisible(isVisible)
+      console.log(isVisible)
     };
 
     window.addEventListener('scroll', checkIfVisible);
@@ -33,8 +34,21 @@ export const CheckInView = ({children} : any) => {
   }, []);
 
   return (
+    <>
     <div ref={elementRef}>
       {children}
     </div>
+    <div style={{
+      position: "fixed",
+      width: "100%",
+      bottom: "0",
+      left: "0",
+      display: isVisible? "none" : "block"
+    }}>
+      <div style={{
+          boxShadow: "0px 0px 5px black"
+      }}>{children}</div>
+    </div>
+    </>
   );
 };
