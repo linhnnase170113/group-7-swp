@@ -6,13 +6,11 @@ export const getProductListByNameApi = async (productName: any) => {
     const productList: any = await response.json();
     return productList;
   } else {
-    return null;
+    return [];
   }
 };
 export const getProductListByCategoryApi = async (categoryId: any) => {
-  console.log(
-    `http://localhost:8080/api/product/filterByCategory?categoryId=${categoryId}`
-  );
+
   const response = await fetch(
     `http://localhost:8080/api/product/filterByCategory?categoryId=${categoryId}`
   );

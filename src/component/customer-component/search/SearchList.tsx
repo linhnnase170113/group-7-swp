@@ -1,5 +1,5 @@
 import React from 'react'
-import {Typography, Grid} from '@mui/material';
+import {Typography} from '@mui/material';
 import ProductList from '../ProductList';
 
 
@@ -14,9 +14,9 @@ export default function SearchList({productList, productName} : any) {
             color:"gray",
             marginBottom: "2rem"
         }}>
-           {productList.length} sản phẩm tìm thấy
+           {productList.length > 0 ? productList.length : "0"} sản phẩm tìm thấy
         </Typography>
-        <ProductList productList={productList}/>
+        {productList.lengh > 0 ? (<ProductList productList={productList}/>) : null}
         </>
   )
 }
