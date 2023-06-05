@@ -10,7 +10,7 @@ const cartInit = {
 }
 
 export const CartContext = createContext(cartInit)
-export default function cartProvider({children} : any) {
+export default function CartProvider({children} : any) {
     const [currentCart, setCurrentCart] = useState<any>(null)
     const { user } = useContext(UserContext)
     const cart = currentCart
