@@ -2,15 +2,14 @@ export const getProductListByNameApi = async (productName: any) => {
   const response = await fetch(
     `http://localhost:8080/api/product/searchByName?productName=${productName}`
   );
-  if (response.ok && productName !== "") {
+  if(response.ok) {
     const productList: any = await response.json();
-    return productList;
+    return productList
   } else {
-    return [];
+    return []
   }
 };
 export const getProductListByCategoryApi = async (categoryId: any) => {
-
   const response = await fetch(
     `http://localhost:8080/api/product/filterByCategory?categoryId=${categoryId}`
   );

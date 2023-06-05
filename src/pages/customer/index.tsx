@@ -10,7 +10,6 @@ export default function Home() {
   useEffect(() => {
     const getCategoryList = async () => {
       setCategoryAndProduct(await getCategoryAndProductApi());
-      console.log(categoryAndProduct);
     };
     getCategoryList();
   }, []);

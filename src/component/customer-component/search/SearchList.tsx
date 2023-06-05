@@ -14,9 +14,9 @@ export default function SearchList({productList, productName} : any) {
             color:"gray",
             marginBottom: "2rem"
         }}>
-           {productList.length > 0 ? productList.length : "0"} sản phẩm tìm thấy
+           {productList.length} sản phẩm tìm thấy
         </Typography>
-        {productList.lengh > 0 ? (<ProductList productList={productList}/>) : null}
+        <ProductList productList={productList}/>
         </>
   )
 }
