@@ -1,13 +1,12 @@
-import { Typography, OutlinedInput, Button, Grid, Select, MenuItem } from '@mui/material';
+import { Typography, OutlinedInput, Button } from '@mui/material';
 import router from 'next/router';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PersonIcon from "@mui/icons-material/Person";
 import AddHomeIcon from '@mui/icons-material/AddHome';
 import { setup } from "@/config/setup";
 import { UserContext } from './AuthContext';
 import { useForm } from 'react-hook-form';
-import Loading from '../Loading'
 import Address from './Address';
 const button = "back to home"
 
