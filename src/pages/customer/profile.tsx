@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { UserContext } from "@/component/login/AuthContext";
 import NavLeft from "@/component/customer-component/profile/NavLeft";
 import InformationUser from "@/component/customer-component/profile/InformationUser";
-export default function profile() {
+export default function Profile() {
     const { user, userBackend} = useContext(UserContext)
   return (
     <UserLayout>
