@@ -17,8 +17,8 @@ const userInit = {
   login: (email: any, password: any) => {},
   logout: () => {},
   createUser: (address: any, userName: any, phoneNumber: any) => {},
-  user: null,
-  userBackend: null
+  user: null as any,
+  userBackend: null as any
 };
 export const UserContext = createContext(userInit);
 

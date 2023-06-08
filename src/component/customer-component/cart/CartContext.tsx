@@ -1,4 +1,5 @@
 import { UserContext } from "@/component/login/AuthContext"
+import { useAppSelector } from "@/feature/Hooks"
 import { createContext, useContext, useEffect, useState } from "react"
 
 const cartInit = {
@@ -6,13 +7,14 @@ const cartInit = {
     getCart: () => {},
     createCart: () => {},
     insertCartItem: () => {},
-    updateCartItem: () => {}
+    updateCartItem: () => {},
 }
 
 export const CartContext = createContext(cartInit)
 export default function CartProvider({children} : any) {
     const [currentCart, setCurrentCart] = useState<any>(null)
     const { user } = useContext(UserContext)
+    const alert = useAppSelector(state => state.alert)
     const cart = currentCart
     const getCart = async() => {
 
@@ -21,14 +23,14 @@ export default function CartProvider({children} : any) {
 
     }
     const insertCartItem = async() => {
-        getCart()
+
     }
     const updateCartItem =async () => {
-        getCart()
+
     }
     useEffect(() => {
         user === null ? setCurrentCart(null) : getCart()
-    }, [user])
+    }, [user, alert])
     return (
         <CartContext.Provider
         value={{cart, getCart, createCart, insertCartItem, updateCartItem}}>

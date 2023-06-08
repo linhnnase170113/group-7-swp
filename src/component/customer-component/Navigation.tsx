@@ -145,6 +145,7 @@ export default function UserNavigation({ categoryList }: any) {
                 <MenuItem key={setting}onClick={() => {
                   handleCloseUserMenu()
                   setting === "Logout" ? logout() : null
+                  setting === "Profile" ? router.push("/customer/profile") : null
                 }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>

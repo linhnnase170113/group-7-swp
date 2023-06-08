@@ -6,7 +6,7 @@ export const createUserApi = async (email : any, phoneNumber : any, address : an
         body: JSON.stringify({
             email: email,
             phoneNumber: phoneNumber,
-            // address: address,
+            address: address,
             userName: userName,
             userUid: userUid,
           })

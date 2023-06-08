@@ -1,7 +1,7 @@
 import React from 'react'
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { IconButton, Badge } from '@mui/material';
 import { useRouter } from 'next/router';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 export default function CartButton() {
     const router = useRouter()
   return (
@@ -12,7 +12,7 @@ export default function CartButton() {
         router.push("/customer/cart")
       }}>
       <Badge badgeContent={4} color="error">
-        <ShoppingBagIcon />
+        <LocalGroceryStoreIcon />
       </Badge>
     </IconButton>
   )
