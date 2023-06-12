@@ -3,19 +3,33 @@ import {
   Avatar,
   Typography,
   TextField,
-  Button,
   InputAdornment,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddNewAddress from "./AddNewAddress";
-import { deleteAddressApi, getAddressByUserUidApi } from "@/pages/api/AddressApi";
+import {
+  deleteAddressApi,
+  getAddressByUserUidApi,
+} from "@/pages/api/AddressApi";
 import { useAppDispatch, useAppSelector } from "@/feature/Hooks";
 import { setOpen } from "@/feature/Alert";
+import ConfirmPopup from "@/component/ConfirmPopup";
+import Loading from "@/component/Loading";
 export default function InformationUser({ user, userBackend }: any) {
   const [userAddressList, setUserAddressList] = useState<any>([]);
-  const dispatch = useAppDispatch()
-  const  alert  = useAppSelector(state => state.alert)
+  const dispatch = useAppDispatch();
+  const alert = useAppSelector((state) => state.alert);
+  const [openConfirmPopup, setOpenConfirmPopup] = useState<any>(false)
+  const [ agree, setAgree] = useState<any>(false)
+  const [ deleteAddress, setDeleteAddress] = useState<any>(null)
+  useEffect(() => {
+    if (agree == true) {
+      handleDeleteAddress(deleteAddress)
+    }
+    setDeleteAddress(null)
+    setAgree(false)
+  },[agree])
   useEffect(() => {
     const getAddress = async () => {
       const addressList = await getAddressByUserUidApi();
@@ -23,26 +37,26 @@ export default function InformationUser({ user, userBackend }: any) {
     };
     getAddress();
   }, [user, alert]);
-  const handleDeleteAddress =async (addressId : any) => {
-      const response = await deleteAddressApi(addressId)
-      if (response) {
-        dispatch(
-          setOpen({
-            open: true,
-            message: "Delete success",
-            severity: "success",
-          })
-        );
-      } else {
-        dispatch(
-          setOpen({
-            open: true,
-            message: "Delete fail",
-            severity: "error",
-          })
-        );
-      }
-  }
+  const handleDeleteAddress = async (addressId: any) => {
+    const response = await deleteAddressApi(addressId);
+    if (response) {
+      dispatch(
+        setOpen({
+          open: true,
+          message: "Delete success",
+          severity: "success",
+        })
+      );
+    } else {
+      dispatch(
+        setOpen({
+          open: true,
+          message: "Delete fail",
+          severity: "error",
+        })
+      );
+    }
+  };
   return (
     <>
       {user !== null && userBackend !== null ? (
@@ -94,8 +108,7 @@ export default function InformationUser({ user, userBackend }: any) {
           <AddNewAddress />
           <div
             style={{
-              margin: "1rem",
-              marginTop: "3rem",
+              margin: "1rem 1rem 0rem 1rem",
             }}
           >
             {userAddressList.map((userAddress: any, key: any) => (
@@ -110,7 +123,13 @@ export default function InformationUser({ user, userBackend }: any) {
                 }}
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end" onClick={() => handleDeleteAddress(userAddress.addressId)}>
+                    <InputAdornment
+                      position="end"
+                      onClick={() => {
+                        setDeleteAddress(userAddress.addressId)
+                        setOpenConfirmPopup(true)
+                      }}
+                    >
                       <ClearIcon
                         color="error"
                         sx={{
@@ -123,8 +142,9 @@ export default function InformationUser({ user, userBackend }: any) {
               />
             ))}
           </div>
+          <ConfirmPopup setOpenConfirmPopup={setOpenConfirmPopup} openConfirmPopup={openConfirmPopup} setAgree={setAgree}/>
         </Paper>
-      ) : null}
+      ) : <Loading/>}
     </>
   );
 }

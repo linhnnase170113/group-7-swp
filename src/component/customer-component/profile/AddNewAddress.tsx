@@ -24,7 +24,10 @@ export default function AddNewAddress() {
     setStreet(value);
   };
   const handleAddNewAddress = async () => {
-    const response = await createAddressApi(`${street}, ${address}`, userBackend.userId);
+    const response = await createAddressApi(
+      `${street}, ${address}`,
+      userBackend.userId
+    );
     if (response) {
       dispatch(
         setOpen({
@@ -42,7 +45,7 @@ export default function AddNewAddress() {
         })
       );
     }
-    setOpenPopup(false)
+    setOpenPopup(false);
   };
   return (
     <>

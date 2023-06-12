@@ -6,6 +6,9 @@ export default function DetailsImg({image} : any) {
     <CardMedia
         component="img"
         alt="green iguana"
-        image={"/assets/images/" + image} />
+        image={"/assets/images/" + image}
+        sx={{
+          height: "374px"
+        }} />
   )
 }

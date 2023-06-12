@@ -17,7 +17,7 @@ export const CheckInView = ({children} : any) => {
         rect.right <= window.innerWidth
       );
       setIsvisible(isVisible)
-      console.log(isVisible)
+      // console.log(isVisible)
     };
 
     window.addEventListener('scroll', checkIfVisible);

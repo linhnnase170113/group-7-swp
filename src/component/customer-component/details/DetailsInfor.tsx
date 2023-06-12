@@ -4,19 +4,14 @@ import { setOpen } from "@/feature/Alert";
 import { Typography, Button, TextField } from "@mui/material";
 import { useAppDispatch } from "@/feature/Hooks";
 import { UserContext } from "@/component/login/AuthContext";
+import { CartContext } from "../cart/CartContext";
+import { addToCartApi } from "@/pages/api/CartItemApi";
 export default function DetailsInfor({ product }: any) {
   const dispatch = useAppDispatch();
   const { user } = useContext(UserContext);
-  const handleAddtoCart = () => {
-    if (user !== null) {
-      dispatch(
-        setOpen({
-          open: true,
-          message: "Adding success",
-          severity: "success",
-        })
-      );
-    } else {
+  const { cart } = useContext(CartContext)
+  const handleAddtoCart = async() => {
+    if (user === null ) {
       dispatch(
         setOpen({
           open: true,
@@ -24,6 +19,25 @@ export default function DetailsInfor({ product }: any) {
           severity: "error",
         })
       );
+    } else {
+      const response = await addToCartApi(cart.cart.cartId, product.productId);
+      if (response) {
+        dispatch(
+          setOpen({
+            open: true,
+            message: "Adding success",
+            severity: "success",
+          })
+        );
+      } else {
+        dispatch(
+          setOpen({
+            open: true,
+            message: "Adding fail",
+            severity: "error",
+          })
+        );
+      }
     }
   };
   return (
