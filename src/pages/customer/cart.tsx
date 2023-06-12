@@ -18,7 +18,7 @@ import Loading from "@/component/Loading";
 import { deleteCartItemApi } from "../api/CartItemApi";
 import { setOpen } from "@/feature/Alert";
 import ConfirmPopup from "@/component/ConfirmPopup";
-import { useAppDispatch } from "@/feature/Hooks";
+import { useAppDispatch, useAppSelector } from "@/feature/Hooks";
 
 export default function Cart() {
   const [orderList, setOrderList] = useState<any>([]);
@@ -58,6 +58,9 @@ export default function Cart() {
   const handleDelete = () => {
     setOpenConfirmPopup(true);
   };
+  useEffect(() => {
+
+  }, [cart])
   return (
     <CustomerLayout>
       <div
@@ -128,7 +131,7 @@ export default function Cart() {
                   paddingTop: "1rem",
                 }}
               >
-                <ChangeQuatityButton quantity={row.quantity} />
+                <ChangeQuatityButton cartItem={row} />
                 <Typography
                   variant="subtitle1"
                   sx={{
