@@ -15,7 +15,7 @@ export default function DetailsInfor({ product }: any) {
       dispatch(
         setOpen({
           open: true,
-          message: "You must login to use",
+          message: "You must login to buy",
           severity: "error",
         })
       );

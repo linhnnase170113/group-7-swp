@@ -7,29 +7,39 @@ import { updateCartItemsQuantityApi } from "@/pages/api/CartItemApi";
 import { setOpen } from "@/feature/Alert";
 import { useAppDispatch } from "@/feature/Hooks";
 import { CartContext } from "./CartContext";
-export default function ChangeQuatityButton({ cartItem }: any) {
+export default function ChangeQuatityButton({ cartItem, productQuantity }: any) {
   const dispatch = useAppDispatch();
   const updateCartItemsQuantity = async (updateQuantity: any) => {
-    const response = await updateCartItemsQuantityApi(
-      cartItem.cartItemId,
-      updateQuantity
-    );
-    if (response) {
+    if( updateQuantity < 0 || updateQuantity > productQuantity) {
       dispatch(
         setOpen({
           open: true,
-          message: "Delete success",
-          severity: "success",
-        })
-      );
-    } else {
-      dispatch(
-        setOpen({
-          open: true,
-          message: "Delete fail",
+          message: "Invalid number",
           severity: "error",
         })
       );
+    } else {
+      const response = await updateCartItemsQuantityApi(
+        cartItem.cartItemId,
+        updateQuantity
+      );
+      if (response) {
+        dispatch(
+          setOpen({
+            open: true,
+            message: "Adding success",
+            severity: "success",
+          })
+        );
+      } else {
+        dispatch(
+          setOpen({
+            open: true,
+            message: "Delete fail",
+            severity: "error",
+          })
+        );
+      }
     }
   };
   return (

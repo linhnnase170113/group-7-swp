@@ -28,6 +28,9 @@ export default function Cart() {
   const [agree, setAgree] = useState<any>(false);
   const [openConfirmPopup, setOpenConfirmPopup] = useState<any>(false);
   const [cartItemDelete, setCartItemDelete] = useState<any>(0);
+  const formatNumber = (number: number) => {
+    return number.toLocaleString('en-US')
+  }
   useEffect(() => {
     const deleteCartItem = async () => {
       const response = await deleteCartItemApi(cartItemDelete);
@@ -128,10 +131,9 @@ export default function Cart() {
               <div
                 style={{
                   paddingRight: "3rem",
-                  paddingTop: "1rem",
                 }}
               >
-                <ChangeQuatityButton cartItem={row} />
+                <ChangeQuatityButton cartItem={row} productQuantity={row.product.quantity}/>
                 <Typography
                   variant="subtitle1"
                   sx={{
@@ -142,10 +144,13 @@ export default function Cart() {
                 </Typography>
               </div>
               <div>
-                <Typography variant="h6">
-                  total: {row.product.price * row.quantity} VND
+                <Typography variant="h6" sx={{
+                  display: "flex",
+                  alignItems: "flex-end"
+                }}>
+                  total: {formatNumber(row.product.price * row.quantity)} VND
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle2">
                   {row.quantity}x{row.product.price}
                 </Typography>
               </div>
@@ -155,6 +160,9 @@ export default function Cart() {
                 onClick={() => {
                   handleDelete();
                   setCartItemDelete(row.cartItemId);
+                }}
+                sx={{
+                  margin: "1rem"
                 }}
               >
                 Xoá
@@ -170,7 +178,7 @@ export default function Cart() {
           sx={{
             marginTop: "2rem",
             height: "4rem",
-            padding: "1rem 2rem 1rem",
+            padding: "1rem 2.5rem 1rem",
           }}
         >
           <Toolbar>

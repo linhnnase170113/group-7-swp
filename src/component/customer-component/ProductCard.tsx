@@ -9,16 +9,51 @@ import { setup } from "@/config/setup";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { IconButton, Tooltip, Zoom } from "@mui/material";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "@/feature/Hooks";
+import { setOpen } from "@/feature/Alert";
+import { addToCartApi } from "@/pages/api/CartItemApi";
+import { UserContext } from "../login/AuthContext";
+import {CartContext} from "./cart/CartContext";
 export default function ProductCard({ product }: any) {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { user } = React.useContext(UserContext);
+  const { cart } = React.useContext(CartContext)
+  const handleAddtoCart = async() => {
+    if (user === null ) {
+      dispatch(
+        setOpen({
+          open: true,
+          message: "You must login to buy",
+          severity: "error",
+        })
+      );
+    } else {
+      const response = await addToCartApi(cart.cart.cartId, product.productId);
+      if (response) {
+        dispatch(
+          setOpen({
+            open: true,
+            message: "Adding success",
+            severity: "success",
+          })
+        );
+      } else {
+        dispatch(
+          setOpen({
+            open: true,
+            message: "Adding fail",
+            severity: "error",
+          })
+        );
+      }
+    }
+  }
   return (
     <Card
       sx={{
         maxWidth: 345,
         cursor: "pointer",
-      }}
-      onClick={() => {
-        router.push(`/customer/details?productId=${product.productId}`);
       }}
     >
       <CardMedia
@@ -27,6 +62,9 @@ export default function ProductCard({ product }: any) {
         image={`/assets/images/${product.image}`}
         sx={{
           height: "13rem",
+        }}
+        onClick={() => {
+          router.push(`/customer/details?productId=${product.productId}`);
         }}
       />
       <CardContent sx={{
@@ -67,7 +105,7 @@ export default function ProductCard({ product }: any) {
         <Button sx={{
           color: "black"
         }}>Chi tiết</Button>
-        <IconButton size="large">
+        <IconButton size="large" onClick={handleAddtoCart}>
           <AddShoppingCartIcon />
         </IconButton>
       </CardActions>
