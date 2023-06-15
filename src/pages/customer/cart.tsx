@@ -62,8 +62,8 @@ export default function Cart() {
     setOpenConfirmPopup(true);
   };
   useEffect(() => {
-
-  }, [cart])
+    console.log(orderList)
+  }, [orderList])
   return (
     <CustomerLayout>
       <div
@@ -102,8 +102,8 @@ export default function Cart() {
               key={row.cartItemId}
             >
               <Checkbox
+              color="success"
                 onChange={(event) => {
-                  console.log(event.target.checked);
                   if (event.target.checked) {
                     setOrderList([...orderList, row]);
                   } else {

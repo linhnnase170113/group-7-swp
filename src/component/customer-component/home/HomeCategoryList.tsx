@@ -2,8 +2,6 @@ import React from "react";
 import { Button, Container, Grid, MenuItem, Typography } from "@mui/material";
 import ProductCard from "../ProductCard";
 import { useRouter } from "next/router";
-import { setup } from "@/config/setup";
-import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 export default function HomeCategoryList({ categoryAndProduct }: any) {
   const router = useRouter();
   return (
