@@ -62,8 +62,22 @@ export default function Cart() {
     setOpenConfirmPopup(true);
   };
   useEffect(() => {
-    console.log(orderList)
-  }, [orderList])
+    if (cart !== null) {
+      // console.log(orderList)
+      // console.log(cart)
+      const totalCartItem = cart.productAndCartItemList.filter((cartItem: any) => 
+        orderList.includes(cartItem.cartItemId)
+      )
+      console.log(totalCartItem)
+      let total = 0
+      for (let index = 0; index < totalCartItem.length; index++) {
+        const element = totalCartItem[index];
+        total = total + element.quantity * element.product.price
+        console.log(total)
+      }
+      setTotal(total)
+    }
+  }, [orderList, cart])
   return (
     <CustomerLayout>
       <div
@@ -102,13 +116,13 @@ export default function Cart() {
               key={row.cartItemId}
             >
               <Checkbox
-              color="success"
                 onChange={(event) => {
+                  console.log(event.target.checked);
                   if (event.target.checked) {
-                    setOrderList([...orderList, row]);
+                    setOrderList([...orderList, row.cartItemId]);
                   } else {
-                    // const newOrderList = orderList.filter((cartItems : any) => key !== cartItems)
-                    // setOrderList(newOrderList)
+                    const newOrderList = orderList.filter((cartItemId: any) => row.cartItemId !== cartItemId)
+                    setOrderList(newOrderList)
                   }
                 }}
               />
@@ -133,7 +147,7 @@ export default function Cart() {
                   paddingRight: "3rem",
                 }}
               >
-                <ChangeQuatityButton cartItem={row} productQuantity={row.product.quantity}/>
+                <ChangeQuatityButton cartItem={row} productQuantity={row.product.quantity} />
                 <Typography
                   variant="subtitle1"
                   sx={{
@@ -185,7 +199,7 @@ export default function Cart() {
             <div></div>
             <Box sx={{ flexGrow: 1 }} />
             <Typography variant="h6">
-              Tổng tiền thanh toán:{" "}
+              Tổng tiền thanh toán:{ }
               <span style={{ marginLeft: "1rem", marginRight: "5rem" }}>
                 {total} VND
               </span>
