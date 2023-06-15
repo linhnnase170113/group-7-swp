@@ -104,6 +104,9 @@ export default function ProductCard({ product }: any) {
       >
         <Button sx={{
           color: "black"
+        }}
+        onClick={() => {
+          router.push(`/customer/details?productId=${product.productId}`);
         }}>Chi tiết</Button>
         <IconButton size="large" onClick={handleAddtoCart}>
           <AddShoppingCartIcon />
