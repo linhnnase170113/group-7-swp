@@ -18,3 +18,11 @@ body {
 html {
     scroll-behavior: smooth;
 }
+.banner-paging{
+    opacity: 0;
+    transition: 200ms;
+    align-items: flex-end;
+}
+.banner-paging:hover {
+    opacity: 1;
+}

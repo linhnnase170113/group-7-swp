@@ -15,6 +15,9 @@ import { addToCartApi } from "@/pages/api/CartItemApi";
 import { UserContext } from "../login/AuthContext";
 import {CartContext} from "./cart/CartContext";
 export default function ProductCard({ product }: any) {
+  const formatNumber = (number: number) => {
+    return number.toLocaleString('en-US')
+  }
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { user } = React.useContext(UserContext);
@@ -76,12 +79,14 @@ export default function ProductCard({ product }: any) {
           height: "3.1rem",
           fontWeight: "600",
           fontSize: "1.1rem",
+        }} onClick={() => {
+          router.push(`/customer/details?productId=${product.productId}`);
         }}>
           {product.productName}
         </Typography>
         </Tooltip>
         <Typography variant="body1" color="text.secondary">
-          {product.price} VND
+          {formatNumber(product.price)} VND
         </Typography>
         <Typography
           variant="body1"
